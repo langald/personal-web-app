@@ -48,10 +48,11 @@ export default {
 }
 .footer-menu__item {
     display: inline-block;
-    list-style-type: none;  
-    padding: 15px;  
+    list-style-type: none;       
 }
 .footer-menu__item a {
+    display: block;
+    padding: 15px; 
     font-weight: bold;
     color: $gray-color;
     text-decoration: none;    

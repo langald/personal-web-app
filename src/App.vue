@@ -23,16 +23,17 @@ export default {
 
 <style lang="scss">
 @import "@/assets/styles/settings.scss";
+@import "@/assets/styles/main.scss";
+
 #app {
   font-family: $font-stack;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  -moz-osx-font-smoothing: grayscale;  
   color: $black-color;
-  font-size: $main-font-size;
+  font-size: $main-font-size; 
 }
 .main-content {
-  margin-top: 80px;
-  min-height: calc(100vh - 160px);
+  margin-top: 84px; 
+  min-height: calc(100vh - 168px);
 }
 </style>
