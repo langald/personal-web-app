@@ -72,11 +72,13 @@ export default {
 .top-section {
   background: url(../assets/workflow.jpg) no-repeat center;  
   background-size: cover;  
+  background-attachment: fixed;
 }
 .top-section__wrap {
   min-height: calc(100vh - 84px);
 }
 .top-section__avatar {
+  border: 5px solid $white-color;
   border-radius: 100%;
   max-width: 300px;
   margin: 20px auto 10px;
