@@ -18,9 +18,6 @@
   </section>
 
   <section class="about-section">
-    
-
-
     <div class="container">
       <div class="row align-items-center"> 
         <div class="d-none d-md-block col-md-3 col-lg-4">
