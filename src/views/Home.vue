@@ -72,6 +72,8 @@ export default {
   background-attachment: fixed;
 }
 .top-section__wrap {
+  /*height for IE11, because with min-height do not work align-items*/
+  height: 1px;
   min-height: calc(100vh - 84px);
 }
 .top-section__avatar {
