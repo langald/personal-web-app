@@ -4,7 +4,7 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-12 col-md-8">
-          <p class="quote">
+          <p class="quote animated fadeInDown">
             „I believe that thoughtful technology can solve any problem. <br>
             And maybe save the world. <br>
             At least make it more awesome.“
@@ -15,17 +15,17 @@
   </div>
   <div class="container">    
     <div class="row">
-      <div class="col-12 col-md-4 goal">
+      <div class="col-12 col-md-4 goal animated fadeInLeft">
         <i class="far fa-star-half fa-rotate-90 hidden"></i>        
         <h3>Creativity</h3>
         <p>The ability to see connections and relationships where others have not</p>
       </div>
-      <div class="col-12 col-md-4 goal">
+      <div class="col-12 col-md-4 goal animated zoomIn">
        <i class="fas fa-chart-line"></i>       
         <h3>Strategy</h3>
         <p>Plan for achieving vision, prioritizing objectives, competing successfully</p>
       </div>
-      <div class="col-12 col-md-4 goal">
+      <div class="col-12 col-md-4 goal animated fadeInRight">
         <i class="fas fa-laptop"></i>      
         <h3>Technology</h3>
         <p>The right tech stack is the key to project’s growth and success</p>
@@ -40,6 +40,7 @@
 
 .quote-wrapper {
   background: url(../assets/world-map.jpg) no-repeat center;
+  background-color: #e4e4e4;
   background-size: cover;
   margin-bottom: 50px;
 }

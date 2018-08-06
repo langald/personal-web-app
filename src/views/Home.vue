@@ -71,11 +71,17 @@ export default {
   background-size: cover;  
   background-attachment: fixed;
 }
-.top-section__wrap {
-  /*height for IE11, because with min-height do not work align-items*/
-  height: 1px;
+ /*.container flex for IE11, because with min-height do not work align-items*/
+.top-section .container {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+.top-section__wrap { 
   min-height: calc(100vh - 84px);
 }
+
 .top-section__avatar {
   border: 5px solid $white-color;
   border-radius: 100%;
