@@ -23,5 +23,8 @@ export default new Router({
       component: E404
     }
   ],
-  mode: 'history'
+  mode: 'history',
+  base: process.env.NODE_ENV === 'production'
+        ? '/personal-web-app/'
+        : '/'
 })
