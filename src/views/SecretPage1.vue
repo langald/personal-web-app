@@ -12,7 +12,8 @@
 	export default {
 		created(){
             console.log(1);
-            		
+					
+			console.log('\n------- Getters arguments ----- ')
 			console.log('getters moduleA_item1 ' + this.moduleA_item1);			
 			console.log('getters moduleA_item2 ' + this.moduleA_item2);			
 			console.log('getters moduleB_item3 ' + this.moduleB_item3);			
@@ -20,7 +21,7 @@
 
             console.log('getters moduleB_itemX ' + JSON.stringify(this.moduleB_itemX));	
 
-            this.moduleB_getItem('my payload');
+            this.moduleB_getItem('My payload');
             
             		
 		},

@@ -13,9 +13,14 @@ export default {
         }			
 	},
 	mutations: {
-		
+		setItem2(state, payload){
+			state.item2 += ' ' + payload
+			console.log(state.item2)
+		}		
 	},
 	actions: {
-		
+		getItem2(store, payload){
+			store.commit('setItem2', payload)
+		}		
 	}
 }
