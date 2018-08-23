@@ -21,6 +21,6 @@ export default {
 	actions: {
 		getItem2(store, payload){
 			store.commit('setItem2', payload)
-		}		
+		}	
 	}
 }

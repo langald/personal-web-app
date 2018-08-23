@@ -11,17 +11,18 @@
 
 	export default {
 		created(){
-            console.log(1);
+            console.log(1)
 					
 			console.log('\n------- Getters arguments ----- ')
-			console.log('getters moduleA_item1 ' + this.moduleA_item1);			
-			console.log('getters moduleA_item2 ' + this.moduleA_item2);			
-			console.log('getters moduleB_item3 ' + this.moduleB_item3);			
-            console.log('getters moduleB_item4 ' + this.moduleB_item4);	
+			console.log('getters moduleA_item1 ' + this.moduleA_item1)		
+			console.log('getters moduleA_item2 ' + this.moduleA_item2)		
+			console.log('getters moduleB_item3 ' + this.moduleB_item3)		
+            console.log('getters moduleB_item4 ' + this.moduleB_item4)
 
-            console.log('getters moduleB_itemX ' + JSON.stringify(this.moduleB_itemX));	
+            console.log('getters moduleB_moduleBGetter ' + JSON.stringify(this.moduleB_moduleBGetter))
 
-            this.moduleB_getItem('My payload');
+			this.moduleBAction('My payload')
+			this.rootAction('New payload')
             
             		
 		},
@@ -33,13 +34,16 @@
 			...mapGetters('moduleB', {
 				moduleB_item3: 'item3',
 				moduleB_item4: 'item4',
-				moduleB_itemX: 'itemX'
+				moduleB_moduleBGetter: 'moduleBGetter'
 			})
 		},
 		methods: {            
 			...mapActions('moduleB', {
-				moduleB_getItem: 'getItem'
-            })            
+				moduleBAction: 'moduleBAction'
+			}),
+			...mapActions({
+				rootAction: 'rootActionY'
+            })             
 		}
 	}
 </script>
