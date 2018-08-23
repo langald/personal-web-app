@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import About from './views/About.vue'
+import MovieList from './views/MovieList.vue'
 import SecretPage1 from './views/SecretPage1.vue'
 import E404 from './views/E404.vue'
 
@@ -23,6 +24,11 @@ export default new Router({
       path: '/secretpage1',
       name: 'secretpage1',
       component: SecretPage1
+    },
+    {
+      path: '/movielist',
+      name: 'movielist',
+      component: MovieList
     },
     {
       path: '*',

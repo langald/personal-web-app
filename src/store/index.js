@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 import moduleA from './modules/moduleA'
 import moduleB from './modules/moduleB'
+import movieList from './modules/movieList'
 
 Vue.use(Vuex)
 
@@ -57,7 +58,8 @@ export default new Vuex.Store({
   },
   modules: {
     moduleA,
-    moduleB
+    moduleB,
+    movieList
   },
   strict: process.env.NODE_ENV !== 'production'
 })
