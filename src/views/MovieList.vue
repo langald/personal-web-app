@@ -11,7 +11,12 @@
 
 	export default {
 		created(){
-           
+			//this.getMovies()
+			//this.searchMovies()
+			//this.getRecommendations()
+			this.getGenres()
+			.then(this.getMovies())
+			//this.getMovie()
             
             		
 		},
@@ -27,9 +32,13 @@
 			})
 		},
 		methods: {            
-			...mapActions('moduleB', {
-				moduleBAction: 'moduleBAction'
-			}),
+			...mapActions('movieList', [
+				'getMovies',
+				'searchMovies',
+				'getRecommendations',
+				'getGenres',
+				'getMovie'
+			]),
 			...mapActions({
 				rootAction: 'rootActionY'
             })             
