@@ -13,8 +13,15 @@ export default {
 		movies (state) {
 			return state.movies
 		},
-		genres (state) {
-			return state.genres
+		genres (state) {	
+			if(state.genres.length) {
+				let genresObj = {}
+				state.genres.forEach(item => {
+					genresObj[item.id] = item.name
+				})
+				return genresObj
+			}	
+			return state.genres			
 		},
 		loading (state) {
 			return state.loading
@@ -49,7 +56,7 @@ export default {
 			return GenresService.all()
 			.then(({ data }) => {				
 				console.log(JSON.stringify(data))
-				store.commit('setGenres', data)
+				store.commit('setGenres', data.genres)
 			})			
 			.catch(error => {
 				//console.log(error.message)
@@ -64,7 +71,7 @@ export default {
 			return MoviesService.all()
 			.then(({ data }) => {
 				console.log('All ' + JSON.stringify(data))
-				store.commit('setMovies', data)				
+				store.commit('setMovies', data.results)				
 			})			
 			.catch(error => {			   
 			   store.commit('setError', error.message)			   
