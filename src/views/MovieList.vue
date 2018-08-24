@@ -11,13 +11,18 @@
 
 	export default {
 		created(){
-			//this.getMovies()
+		
+			
+			this.getGenres()
+					.then(() => this.getMovies())
+
 			//this.searchMovies()
 			//this.getRecommendations()
-			this.getGenres()
-			.then(this.getMovies())
 			//this.getMovie()
-            
+
+
+
+		
             		
 		},
 		computed: {

@@ -25,8 +25,9 @@ export default {
         		
 	},
 	mutations: {
-		setLoading (state, payload) {
+		setLoading (state, payload) {			
 			state.loading = payload
+			console.log('loading ' + state.loading)
 		},
 		setError (state, payload) {
 			state.error = payload
@@ -44,28 +45,34 @@ export default {
 			store.commit('setLoading', true)
 			store.commit('setError', '')
 
-			GenresService.all()
-			.then(({ data }) => {
+			//use return to organize the chain
+			return GenresService.all()
+			.then(({ data }) => {				
 				console.log(JSON.stringify(data))
 				store.commit('setGenres', data)
 			})			
 			.catch(error => {
-			   //console.log(error.message)
-			   store.commit('setError', error.message)
+				//console.log(error.message)
+				store.commit('setError', error.message)				  
+			})
+			.then(() => store.commit('setLoading', false))			
+		},
+		getMovies(store, payload){
+			store.commit('setLoading', true)
+			store.commit('setError', '')
+
+			return MoviesService.all()
+			.then(({ data }) => {
+				console.log('All ' + JSON.stringify(data))
+				store.commit('setMovies', data)				
+			})			
+			.catch(error => {			   
+			   store.commit('setError', error.message)			   
 			})
 			.then(() => store.commit('setLoading', false))
 		},
-		getMovies(){
-			MoviesService.all()
-			.then(({ data }) => {
-				console.log('All ' + JSON.stringify(data))
-			})			
-			.catch(error => {
-               console.log(error.message)
-            })
-		},
 		searchMovies(){
-			MoviesService.search()
+			return MoviesService.search()
 			.then(({ data }) => {
 				console.log('search' + JSON.stringify(data))
 			})			
@@ -74,7 +81,7 @@ export default {
             })
 		},
 		getRecommendations(){
-			MoviesService.recommendations()
+			return MoviesService.recommendations()
 			.then(({ data }) => {
 				console.log('Recommendations' + JSON.stringify(data))
 			})			
@@ -83,7 +90,7 @@ export default {
             })
 		},
 		getMovie(){
-			MovieService.get()
+			return MovieService.get()
 			.then(({ data }) => {
 				console.log(JSON.stringify(data))
 			})			
