@@ -48,13 +48,14 @@ export const MoviesService = {
     all: () =>
         ApiService.get('/movie/popular', '&page=1'),
     search: () =>
-        ApiService.get('/search/movie', '&page=1&query=оушен')
+        ApiService.get('/search/movie', '&page=1&query=оушен'),
+    recommendations: (id) => 
+        ApiService.get(`/movie/${id}/recommendations`, `&page=1`)
    
 }
 export const MovieService = {
     get: (id) =>
-        ApiService.get(`/movie/${id}`),
-    recommendations: (id) => 
-        ApiService.get(`/movie/${id}/recommendations`, `&page=1`)
+        ApiService.get(`/movie/${id}`)
+    
 }
 

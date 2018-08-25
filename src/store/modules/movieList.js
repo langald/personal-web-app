@@ -98,6 +98,20 @@ export default {
 			})
 			.then(() => store.commit('setLoading', false))
 		},
+		getRecommendations(store, id){
+			store.commit('setLoading', true)
+			store.commit('setError', '')
+
+			return MoviesService.recommendations(id)
+			.then(({ data }) => {
+				console.log('Recommendations ' + JSON.stringify(data))
+				store.commit('setMovies', data.results)				
+			})			
+			.catch(error => {			   
+				store.commit('setError', error.message)			   
+			})
+			.then(() => store.commit('setLoading', false))
+		},
 		searchMovies(){
 			return MoviesService.search()
 			.then(({ data }) => {

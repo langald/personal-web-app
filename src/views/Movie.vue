@@ -78,7 +78,7 @@
 				<h3>Смотрите также</h3>
 				</div>
 
-				<movie-poster v-for="recomendedMovie in recommendations"
+				<movie-poster v-for="recomendedMovie in recommendationsList"
 				:movie="recomendedMovie"
 				:key="recomendedMovie.id"
 				@onPosterFavoriteClick="updateFavorited($event)"
@@ -125,29 +125,34 @@
 				'recommendations',
 				'loadingMovie',
 				'errorMovie',
-				'loadingRecomendations',
-				'errorRecomendations'
+				
 			]),
+			...mapGetters('movieList', {
+				recommendations: 'movies',
+				loadingRecomendations: 'loading',
+				errorRecomendations: 'error'
+			}),
+			recommendationsList() {
+				return this.recommendations.slice(0,6)
+			},
 			loading() {
 				return this.loadingMovie || this.loadingRecomendations				
 			},
-			error() {
-				
+			error() {				
 				if(this.errorMovie || this.errorRecomendations) {
 					return this.errorMovie + ' ' + this.errorRecomendations
 				}
-				return ''
-				
+				return ''				
 			}	
 		},
 		methods: {            
 			...mapActions('movieList', [
 				'getGenres',				
-				'updateFavorited'				
+				'updateFavorited',
+				'getRecommendations'				
 			]),
 			...mapActions('movie', [								
-				'getMovie',
-				'getRecommendations'		
+				'getMovie'		
 			]),			
 			genreTitle (genreIds){
 				return genreIds.map(id => this.genres[id])								
