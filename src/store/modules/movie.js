@@ -11,11 +11,30 @@ export default {
 		errorRecomendations: ''        		
 	},
 	getters: {
-		movie (state) {			
-			return state.movie
+		movie (state, getters, rootState, rootGetters) {			
+			return {
+				...state.movie,
+				isFavorited: rootState.movieList.favorited.filter(fm => fm.id === state.movie.id).length > 0
+			}
 		},		
-		recommendations (state) {			
-			return state.recommendations.slice(0, 6)
+		recommendations (state, getters, rootState, rootGetters) {
+			//console.log(rootGetters)	
+			if(state.recommendations.length) {
+				return state.recommendations.slice(0, 6).map( item => {
+					let genres = item.genre_ids.map(itemGenre => {
+						return {
+							id: itemGenre,
+							name: rootGetters['movieList/genres'][itemGenre]
+						}
+					})
+					return  {
+						...item,
+						genres,
+						isFavorited: rootState.movieList.favorited.filter(fm => fm.id === item.id).length > 0
+					}
+				})
+			}
+			return state.recommendations
 		},		
 		loadingMovie (state) {
 			return state.loadingMovie

@@ -4,14 +4,13 @@ export default {
 	namespaced: true,
 	state: {
 		movies: [],
+		favorited: JSON.parse(window.localStorage.getItem('favoritedMovies')) || [],
 		genres: [],
 		loading: true,
-		error: ''
-        		
+		error: ''		        		
 	},
 	getters: {
-		movies (state, getters) {
-			
+		movies (state, getters) {			
 			if(state.movies.length) {
 				return state.movies.map( item => {
 					let genres = item.genre_ids.map(itemGenre => {
@@ -22,7 +21,8 @@ export default {
 					})
 					return  {
 						...item,
-						genres
+						genres,
+						isFavorited: state.favorited.filter(fm => fm.id === item.id).length > 0 
 					}
 				})
 			}	
@@ -39,13 +39,15 @@ export default {
 			}	
 			return state.genres			
 		},
+		favorited (state) {
+			return state.favorited
+		},
 		loading (state) {
 			return state.loading
-		},
+		},		
 		error (state) {
 			return state.error
-		}
-        		
+		}        		
 	},
 	mutations: {
 		setLoading (state, payload) {			
@@ -60,8 +62,10 @@ export default {
 		},
 		setGenres(state, payload) {
 			state.genres = payload
-		}
-		
+		},
+		setFavorited(state, payload) {
+			state.favorited = payload
+		}		
 	},
 	actions: {		
 		getGenres(store) {
@@ -103,14 +107,16 @@ export default {
                console.log(error.message)
             })
 		},
-		getRecommendations(){
-			return MoviesService.recommendations()
-			.then(({ data }) => {
-				console.log('Recommendations' + JSON.stringify(data))
-			})			
-			.catch(error => {
-               console.log(error.message)
-            })
+		updateFavorited(store, movie){
+			let favoritedArr = [...store.state.favorited]
+			if (favoritedArr.filter( item => item.id === movie.id).length > 0) {
+				favoritedArr = favoritedArr.filter( item => item.id !== movie.id)
+			} else {
+				favoritedArr.push(movie)
+			}
+			console.log(favoritedArr)			
+			window.localStorage.setItem('favoritedMovies', JSON.stringify(favoritedArr))
+			store.commit('setFavorited', favoritedArr)
 		}
 	
 	}

@@ -11,7 +11,7 @@
 				<movie-poster v-for="movie in movies"
 					:movie="movie"					
 					:key="movie.id"
-					@onPosterFavoriteClick="setFavoriteMovies($event)"
+					@onPosterFavoriteClick="updateFavorited($event)"
 				/>
 			</div>
 			
@@ -83,14 +83,10 @@
 		methods: {            
 			...mapActions('movieList', [
 				'getMovies',
-				'searchMovies',
-				'getRecommendations',
+				'searchMovies',				
 				'getGenres',
-				'getMovie'
-			]),
-			setFavoriteMovies (e) {
-				console.log('setFavoriteMovies')
-			}
+				'updateFavorited'
+			])
 			
 			            
 		}

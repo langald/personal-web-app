@@ -2,7 +2,7 @@
     <div class="col-6 col-sm-4 col-md-2 movie-poster">
       <router-link :to="{name: 'movie', params: { id: movie.id }}">
         <div class="image-container">
-          <img :src="'https://image.tmdb.org/t/p/w185X' + movie.poster_path" onerror="this.onerror=null;this.src='https://placeholdit.co//i/185x278?bg=000000'"/>
+          <img :src="'https://image.tmdb.org/t/p/w185' + movie.poster_path" onerror="this.onerror=null;this.src='https://placeholdit.co//i/185x278?bg=000000'"/>
         </div>
         <div class="movie-poster__title">
           {{movie.title}}
@@ -10,7 +10,7 @@
       </router-link>
 
       <div class="movie-poster__favorite" @click="onFavoriteClick(movie)">
-          <i class="far fa-bookmark" v-if="!movie.inFavorite"></i>
+          <i class="far fa-bookmark" v-if="!movie.isFavorited"></i>
           <i class="fas fa-bookmark" v-else></i>
       </div>
 

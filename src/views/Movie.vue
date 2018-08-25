@@ -14,7 +14,7 @@
 			<div class="row margin-top-40">
 				<div class="col-12 col-sm-6 movie-image">
 					<div class="image-container">
-						<img :src="'https://image.tmdb.org/t/p/w780X' + movie.backdrop_path"  onerror="this.onerror=null;this.src='https://placeholdit.co//i/780x439?bg=000000'" />
+						<img :src="'https://image.tmdb.org/t/p/w780' + movie.backdrop_path"  onerror="this.onerror=null;this.src='https://placeholdit.co//i/780x439?bg=000000'" />
 					</div>
 				</div>
 				<div class="col-12 col-sm-6 movie-info">
@@ -56,8 +56,8 @@
 					<div class="row">
 						<div class="col-5 movie-info__item-name">Избранное:</div>
 						<div class="col-7">
-						<div class="movie-info__favorite" @click="setFavoriteMovies(movie)">
-							<i class="far fa-bookmark" v-if="!movie.inFavorite"></i>
+						<div class="movie-info__favorite" @click="updateFavorited(movie)">
+							<i class="far fa-bookmark" v-if="!movie.isFavorited"></i>
 							<i class="fas fa-bookmark" v-else></i>
 						</div>
 						</div>
@@ -81,7 +81,7 @@
 				<movie-poster v-for="recomendedMovie in recommendations"
 				:movie="recomendedMovie"
 				:key="recomendedMovie.id"
-				@onPosterFavoriteClick="setFavoriteMovies($event)"
+				@onPosterFavoriteClick="updateFavorited($event)"
 				/>
 			</div>
 			
@@ -109,9 +109,15 @@
 				
 			}
 		},
+		 beforeRouteUpdate (to) {
+			this.getMovie(to.params.id)
+			this.getRecommendations(to.params.id)
+			this.getGenres()
+		},
 		created(){			
 			this.getMovie(this.$route.params.id)
 			this.getRecommendations(this.$route.params.id)
+			this.getGenres()
 		},
 		computed: {			
 			...mapGetters('movie', [			
@@ -135,17 +141,14 @@
 			}	
 		},
 		methods: {            
-			...mapActions('movieList', [								
-				
+			...mapActions('movieList', [
 				'getGenres',				
+				'updateFavorited'				
 			]),
 			...mapActions('movie', [								
 				'getMovie',
 				'getRecommendations'		
-			]),
-			setFavoriteMovies (e) {
-				console.log('setFavoriteMovies')
-			},
+			]),			
 			genreTitle (genreIds){
 				return genreIds.map(id => this.genres[id])								
 			}
