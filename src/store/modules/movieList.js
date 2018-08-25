@@ -111,15 +111,6 @@ export default {
 			.catch(error => {
                console.log(error.message)
             })
-		},
-		getMovie(){
-			return MovieService.get()
-			.then(({ data }) => {
-				console.log(JSON.stringify(data))
-			})			
-			.catch(error => {
-               console.log(error.message)
-            })
 		}
 	
 	}

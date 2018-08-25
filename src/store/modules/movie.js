@@ -4,36 +4,57 @@ export default {
 	namespaced: true,
 	state: {
 		movie: {},	
-		loading: true,
-		error: ''        		
+		recommendations: [],
+		loadingMovie: true,
+		errorMovie: '',        		
+		loadingRecomendations: true,
+		errorRecomendations: ''        		
 	},
 	getters: {
 		movie (state) {			
 			return state.movie
 		},		
-		loading (state) {
-			return state.loading
+		recommendations (state) {			
+			return state.recommendations.slice(0, 6)
+		},		
+		loadingMovie (state) {
+			return state.loadingMovie
 		},
-		error (state) {
-			return state.error
+		errorMovie (state) {
+			return state.errorMovie
+		},       		
+		loadingRecomendations (state) {
+			return state.loadingRecomendations
+		},
+		errorRecomendations (state) {
+			return state.errorRecomendations
 		}        		
 	},
-	mutations: {
-		setLoading (state, payload) {			
-			state.loading = payload
-			console.log('loading ' + state.loading)
+	mutations: {		
+		setLoadingMovie (state, payload) {			
+			state.loadingMovie = payload
+			console.log('loading ' + state.loadingMovie)
 		},
-		setError (state, payload) {
-			state.error = payload
+		setErrorMovie (state, payload) {
+			state.errorMovie = payload
+		},
+		setLoadingRecomendations (state, payload) {			
+			state.loadingRecomendations = payload			
+		},
+		setErrorRecomendations (state, payload) {
+			state.errorRecomendations = payload
 		},
 		setMovie(state, payload) {
 			state.movie = payload
+		},		
+		setRecommendations(state, payload) {
+			state.recommendations = payload
 		}		
 	},
 	actions: {
 		getMovie(store, id){
-			store.commit('setLoading', true)
-			store.commit('setError', '')
+			store.commit('setLoadingMovie', true)
+			store.commit('setErrorMovie', '')
 
 			return MovieService.get(id)
 			.then(({ data }) => {
@@ -41,9 +62,23 @@ export default {
 				store.commit('setMovie', data)				
 			})			
 			.catch(error => {			   
-			   store.commit('setError', error.message)			   
+				store.commit('setErrorMovie', error.message)			   
 			})
-			.then(() => store.commit('setLoading', false))
-		}	
+			.then(() => store.commit('setLoadingMovie', false))
+		},
+		getRecommendations(store, id){
+			store.commit('setLoadingRecomendations', true)
+			store.commit('setErrorRecomendations', '')
+
+			return MovieService.recommendations(id)
+			.then(({ data }) => {
+				console.log('Recommendations ' + JSON.stringify(data))
+				store.commit('setRecommendations', data.results)				
+			})			
+			.catch(error => {			   
+				store.commit('setErrorRecomendations', error.message)			   
+			})
+			.then(() => store.commit('setLoadingRecomendations', false))
+		}			
 	}
 }

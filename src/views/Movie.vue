@@ -72,19 +72,19 @@
 
 			
 
-			<!--
-			<div class="row margin-top-20 movie-recommendations" v-if="movieRecommendations.length">
+			
+			<div class="row margin-top-20 movie-recommendations" v-if="recommendations.length">
 				<div class="col-12">
 				<h3>Смотрите также</h3>
 				</div>
 
-				<movie-poster v-for="recomendedMovie in movieRecommendations"
+				<movie-poster v-for="recomendedMovie in recommendations"
 				:movie="recomendedMovie"
 				:key="recomendedMovie.id"
 				@onPosterFavoriteClick="setFavoriteMovies($event)"
 				/>
 			</div>
-			-->
+			
 		</div>		
   </div>
 </template>
@@ -111,37 +111,37 @@
 		},
 		created(){			
 			this.getMovie(this.$route.params.id)
+			this.getRecommendations(this.$route.params.id)
 		},
-		computed: {
-			...mapGetters('movieList', {			
-				genres: 'genres',
-				movieList_Loading: 'loading',
-				movieList_Error: 'error'
-			}),
-			...mapGetters('movie', {			
-				movie: 'movie',
-				movie_Loading: 'loading',
-				movie_Error: 'error'
-			}),
+		computed: {			
+			...mapGetters('movie', [			
+				'movie',
+				'recommendations',
+				'loadingMovie',
+				'errorMovie',
+				'loadingRecomendations',
+				'errorRecomendations'
+			]),
 			loading() {
-				//return this.movieList_Loading || this.movie_Loading
-				return this.movie_Loading
+				return this.loadingMovie || this.loadingRecomendations				
 			},
 			error() {
-				if(this.movieList_Error || this.movie_Error) {
-					return this.movieList_Error + ' ' + this.movie_Error
+				
+				if(this.errorMovie || this.errorRecomendations) {
+					return this.errorMovie + ' ' + this.errorRecomendations
 				}
 				return ''
-			}		
-			
+				
+			}	
 		},
 		methods: {            
 			...mapActions('movieList', [								
-				'getRecommendations',
+				
 				'getGenres',				
 			]),
 			...mapActions('movie', [								
-				'getMovie'		
+				'getMovie',
+				'getRecommendations'		
 			]),
 			setFavoriteMovies (e) {
 				console.log('setFavoriteMovies')
