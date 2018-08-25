@@ -53,7 +53,7 @@ export const MoviesService = {
         ApiService.get('/movie/531/recommendations', '&page=1')
 }
 export const MovieService = {
-    get: () =>
-        ApiService.get('/movie/531')
+    get: (id) =>
+        ApiService.get(`/movie/${id}`)
 }
 

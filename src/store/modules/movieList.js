@@ -10,7 +10,23 @@ export default {
         		
 	},
 	getters: {
-		movies (state) {
+		movies (state, getters) {
+			
+			if(state.movies.length) {
+				return state.movies.map( item => {
+					let genres = item.genre_ids.map(itemGenre => {
+						return {
+							id: itemGenre,
+							name: getters.genres[itemGenre]
+						}
+					})
+					return  {
+						...item,
+						genres
+					}
+				})
+			}	
+				
 			return state.movies
 		},
 		genres (state) {	

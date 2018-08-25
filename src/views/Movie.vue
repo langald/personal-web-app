@@ -1,0 +1,189 @@
+<template>
+	<div>
+		<app-loading v-show="loading" />
+		<app-error v-if="error" :message="error" />
+		<div v-else class="container movie-wrap" >
+			
+
+			<div class="row">
+				<div class="col-12 text-center">
+				<h1>{{movie.title}}</h1>
+				</div>
+			</div>
+
+			<div class="row margin-top-40">
+				<div class="col-12 col-sm-6 movie-image">
+					<div class="image-container">
+						<img :src="'https://image.tmdb.org/t/p/w780X' + movie.backdrop_path"  onerror="this.onerror=null;this.src='https://placeholdit.co//i/780x439?bg=000000'" />
+					</div>
+				</div>
+				<div class="col-12 col-sm-6 movie-info">
+					<div class="row">
+						<div class="col-5 movie-info__item-name">Название:</div>
+						<div class="col-7">{{movie.title}}</div>
+					</div>
+
+					<div class="row">
+						<div class="col-5 movie-info__item-name">Жанр:</div>
+						<div class="col-7">
+						<span v-for="(genre, index) in movie.genres" :key="genre.id">
+							<span v-if="index">, </span>
+							{{genre.name}}
+						</span>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-5 movie-info__item-name">Страна:</div>
+						<div class="col-7">
+						<span v-for="(country, index) in movie.production_countries" :key="index">
+							<span v-if="index">, </span>
+							{{country.name}}
+						</span>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-5 movie-info__item-name">Дата выхода:</div>
+						<div class="col-7">{{movie.release_date}}</div>
+					</div>
+
+					<div class="row">
+						<div class="col-5 movie-info__item-name">Рейтинг:</div>
+						<div class="col-7">{{movie.vote_average}}</div>
+					</div>
+
+					<div class="row">
+						<div class="col-5 movie-info__item-name">Избранное:</div>
+						<div class="col-7">
+						<div class="movie-info__favorite" @click="setFavoriteMovies(movie)">
+							<i class="far fa-bookmark" v-if="!movie.inFavorite"></i>
+							<i class="fas fa-bookmark" v-else></i>
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row margin-top-20">
+				<div class="col-12 movie-overview">
+				{{movie.overview}}
+				</div>
+			</div>
+
+			
+
+			<!--
+			<div class="row margin-top-20 movie-recommendations" v-if="movieRecommendations.length">
+				<div class="col-12">
+				<h3>Смотрите также</h3>
+				</div>
+
+				<movie-poster v-for="recomendedMovie in movieRecommendations"
+				:movie="recomendedMovie"
+				:key="recomendedMovie.id"
+				@onPosterFavoriteClick="setFavoriteMovies($event)"
+				/>
+			</div>
+			-->
+		</div>		
+  </div>
+</template>
+
+<script>
+	import Loading from '@/components/Loading'
+	import Error from '@/components/Error'
+	import MoviePoster from '@/components/MoviePoster'
+
+	import {mapGetters} from 'vuex';
+	import {mapActions} from 'vuex';
+
+	export default {
+		name: 'Movie',
+		components: {			
+			'app-loading': Loading,			
+			'app-error': Error,			
+			'movie-poster': MoviePoster			
+		},
+		data () {
+			return {				
+				
+			}
+		},
+		created(){			
+			this.getMovie(this.$route.params.id)
+		},
+		computed: {
+			...mapGetters('movieList', {			
+				genres: 'genres',
+				movieList_Loading: 'loading',
+				movieList_Error: 'error'
+			}),
+			...mapGetters('movie', {			
+				movie: 'movie',
+				movie_Loading: 'loading',
+				movie_Error: 'error'
+			}),
+			loading() {
+				//return this.movieList_Loading || this.movie_Loading
+				return this.movie_Loading
+			},
+			error() {
+				if(this.movieList_Error || this.movie_Error) {
+					return this.movieList_Error + ' ' + this.movie_Error
+				}
+				return ''
+			}		
+			
+		},
+		methods: {            
+			...mapActions('movieList', [								
+				'getRecommendations',
+				'getGenres',				
+			]),
+			...mapActions('movie', [								
+				'getMovie'		
+			]),
+			setFavoriteMovies (e) {
+				console.log('setFavoriteMovies')
+			},
+			genreTitle (genreIds){
+				return genreIds.map(id => this.genres[id])								
+			}
+			            
+		}
+	}
+</script>
+
+<style lang="scss" scoped>
+@import "@/assets/styles/settings.scss";
+
+.movie-wrap {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.movie-info {
+  color: $gray-color;
+  font-size: 16px;
+  line-height: 2.2;
+  padding-top: 30px;
+}
+.movie-info__item-name {
+  font-weight: bold;
+}
+.movie-overview {
+   color: $gray-dark-color;
+   text-indent: 20px;
+   font-size: 16px;
+}
+
+.movie-info__favorite{
+  font-size: 18px;
+}
+.movie-info__favorite .far:hover {
+  color: $gold-color;
+}
+.movie-info__favorite .fas {
+  color: $gold-color;
+}
+</style>

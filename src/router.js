@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import About from './views/About.vue'
 import MovieList from './views/MovieList.vue'
+import Movie from './views/Movie.vue'
 import SecretPage1 from './views/SecretPage1.vue'
 import E404 from './views/E404.vue'
 
@@ -29,6 +30,11 @@ export default new Router({
       path: '/movielist',
       name: 'movielist',
       component: MovieList
+    },
+    {
+      path: '/movie@:id',
+      name: 'movie',
+      component: Movie
     },
     {
       path: '*',
