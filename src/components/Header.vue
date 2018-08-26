@@ -4,7 +4,12 @@
         <div class="row">
             <navbar 
                 navbarClass="col-12" 
-                :items="[{to: 'home', title: 'Home'}, {to: 'about', title: 'About'}]"
+                :items="[
+                    {to: 'home', title: 'Home'}, 
+                    {to: 'about', title: 'About'},
+                    {to: 'movielist', title: 'Movies'},
+                    {to: 'favorited', title: 'Favorited'}
+                ]"
             />                    
         </div>
     </div>

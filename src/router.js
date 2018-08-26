@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import About from './views/About.vue'
 import MovieList from './views/MovieList.vue'
+import MovieListFavorited from './views/MovieListFavorited.vue'
 import Movie from './views/Movie.vue'
 import SecretPage1 from './views/SecretPage1.vue'
 import E404 from './views/E404.vue'
@@ -30,6 +31,11 @@ export default new Router({
       path: '/movielist',
       name: 'movielist',
       component: MovieList
+    },
+    {
+      path: '/favorited',
+      name: 'favorited',
+      component: MovieListFavorited
     },
     {
       path: '/movie@:id',

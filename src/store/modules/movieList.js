@@ -126,6 +126,7 @@ export default {
 			if (favoritedArr.filter( item => item.id === movie.id).length > 0) {
 				favoritedArr = favoritedArr.filter( item => item.id !== movie.id)
 			} else {
+				movie.isFavorited = true
 				favoritedArr.push(movie)
 			}
 			console.log(favoritedArr)			
