@@ -3,18 +3,22 @@
 		<app-loading v-show="loading" />
 		<app-error v-if="error" :message="error" />		
 		<div v-else class="container movieList-wrap">	
-			<div v-if="movies.length === 0 && !loading" class="margin-top-40 text-center">
-				Список пуст!
-			</div>
-			
-			<div v-else class="row">
+			<div class="row">
 				<div class="col-12 text-right margin-bottom-20">
 					<app-input 
 						:value="searchvalue" 
 						placeholder="Search.." 
+						ref="searchField"
 						@onUpdateValue="onsearchFieldInput($event)"
 						/>
 				</div>
+			</div>
+
+			<div v-if="movies.length === 0 && !loading" class="margin-top-40 text-center">
+				Список пуст!
+			</div>
+			
+			<div v-else class="row">				
 				<movie-poster v-for="movie in movies"
 					:movie="movie"					
 					:key="movie.id"
@@ -67,30 +71,18 @@
 		},
 		data () {
 			return {
-				searchvalue: this.$route.params.search ? decodeURIComponent(this.$route.params.search) : ''
-				
-				//searchvalue: 'hjhjhj'
-
+				//searchvalue: this.$route.params.search ? decodeURIComponent(this.$route.params.search) : ''
 			}
-		},
-		beforeRouteUpdate (to, from, next) {
-			if(to.params.search) {					
+		},		
+		mounted(){
+			if(this.$route.params.search) {					
+				this.$refs.searchField.$el.children[0].focus()				
 				this.getGenres()
-					.then(() => this.searchMovies(decodeURIComponent(to.params.search)))					
+					.then(() => this.searchMovies(decodeURIComponent(this.$route.params.search)))					
 			} else {				
 				this.getGenres()
 					.then(() => this.getMovies())				
-			}
-			return next()
-		},
-		created(){
-			
-			this.getGenres()
-					.then(() => this.getMovies())
-			
-
-				
-            		
+			}		
 		},
 		computed: {
 			...mapGetters('movieList', [
@@ -98,7 +90,11 @@
 				'genres',
 				'loading',
 				'error'
-			])
+			]),
+			searchvalue() {
+				return this.$route.params.search ? decodeURIComponent(this.$route.params.search) : ''
+			}
+			 
 			
 			
 		},
@@ -110,8 +106,11 @@
 				'updateFavorited'
 			]),
 			onsearchFieldInput(val) {				
-				if (!val.trim()) return
-				this.$router.push({ name: 'movielist', params: { search: encodeURIComponent(val)}})
+				if (!val.trim()) {
+					this.getMovies()
+				} else {
+					this.searchMovies(val)
+				}				
 			}
 			
 			            
