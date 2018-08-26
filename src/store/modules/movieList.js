@@ -1,3 +1,4 @@
+import router from '@/router'
 import { MoviesService, GenresService, MovieService } from '@/common/api.service'
 
 export default {
@@ -75,7 +76,7 @@ export default {
 			//use return to organize the chain
 			return GenresService.all()
 			.then(({ data }) => {				
-				console.log(JSON.stringify(data))
+				//console.log(JSON.stringify(data))
 				store.commit('setGenres', data.genres)
 			})			
 			.catch(error => {
@@ -90,11 +91,11 @@ export default {
 
 			return MoviesService.all()
 			.then(({ data }) => {
-				console.log('All ' + JSON.stringify(data))
+				//console.log('All ' + JSON.stringify(data))
 				store.commit('setMovies', data.results)				
 			})			
 			.catch(error => {			   
-			   store.commit('setError', error.message)			   
+				store.commit('setError', error.message)			   
 			})
 			.then(() => store.commit('setLoading', false))
 		},
@@ -104,7 +105,7 @@ export default {
 
 			return MoviesService.recommendations(id)
 			.then(({ data }) => {
-				console.log('Recommendations ' + JSON.stringify(data))
+				//console.log('Recommendations ' + JSON.stringify(data))
 				store.commit('setMovies', data.results)				
 			})			
 			.catch(error => {			   
@@ -112,14 +113,20 @@ export default {
 			})
 			.then(() => store.commit('setLoading', false))
 		},
-		searchMovies(){
-			return MoviesService.search()
+		searchMovies(store, payload){
+			
+			store.commit('setLoading', true)
+			store.commit('setError', '')
+
+			return MoviesService.search(payload)
 			.then(({ data }) => {
-				console.log('search' + JSON.stringify(data))
+				//console.log('search ' + JSON.stringify(data))
+				store.commit('setMovies', data.results)				
 			})			
-			.catch(error => {
-               console.log(error.message)
-            })
+			.catch(error => {			   
+				store.commit('setError', error.message)			   
+			})
+			.then(() => store.commit('setLoading', false))
 		},
 		updateFavorited(store, movie){
 			let favoritedArr = [...store.state.favorited]

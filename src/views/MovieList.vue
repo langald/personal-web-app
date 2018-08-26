@@ -8,6 +8,13 @@
 			</div>
 			
 			<div v-else class="row">
+				<div class="col-12 text-right margin-bottom-20">
+					<app-input 
+						:value="searchvalue" 
+						placeholder="Search.." 
+						@onUpdateValue="onsearchFieldInput($event)"
+						/>
+				</div>
 				<movie-poster v-for="movie in movies"
 					:movie="movie"					
 					:key="movie.id"
@@ -45,6 +52,7 @@
 	import Loading from '@/components/Loading'
 	import Error from '@/components/Error'
 	import MoviePoster from '@/components/MoviePoster'
+	import Input from '@/components/Input'
 
 	import {mapGetters} from 'vuex';
 	import {mapActions} from 'vuex';
@@ -54,20 +62,34 @@
 		components: {			
 			'app-loading': Loading,			
 			'app-error': Error,			
-			'movie-poster': MoviePoster			
+			'movie-poster': MoviePoster,			
+			'app-input': Input			
 		},
 		data () {
 			return {
+				searchvalue: this.$route.params.search ? decodeURIComponent(this.$route.params.search) : ''
+				
+				//searchvalue: 'hjhjhj'
 
 			}
 		},
+		beforeRouteUpdate (to, from, next) {
+			if(to.params.search) {					
+				this.getGenres()
+					.then(() => this.searchMovies(decodeURIComponent(to.params.search)))					
+			} else {				
+				this.getGenres()
+					.then(() => this.getMovies())				
+			}
+			return next()
+		},
 		created(){
+			
 			this.getGenres()
 					.then(() => this.getMovies())
+			
 
-			//this.searchMovies()
-			//this.getRecommendations()
-			//this.getMovie()	
+				
             		
 		},
 		computed: {
@@ -86,7 +108,11 @@
 				'searchMovies',				
 				'getGenres',
 				'updateFavorited'
-			])
+			]),
+			onsearchFieldInput(val) {				
+				if (!val.trim()) return
+				this.$router.push({ name: 'movielist', params: { search: encodeURIComponent(val)}})
+			}
 			
 			            
 		}

@@ -28,7 +28,7 @@ export default new Router({
       component: SecretPage1
     },
     {
-      path: '/movielist',
+      path: '/movielist/:search?',
       name: 'movielist',
       component: MovieList
     },
@@ -38,7 +38,7 @@ export default new Router({
       component: MovieListFavorited
     },
     {
-      path: '/movie@:id',
+      path: '/movie/:id',
       name: 'movie',
       component: Movie
     },

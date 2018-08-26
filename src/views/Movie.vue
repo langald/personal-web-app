@@ -3,6 +3,15 @@
 		<app-loading v-show="loading" />
 		<app-error v-if="error" :message="error" />
 		<div v-else class="container movie-wrap" >
+			<div class="row">
+				<div class="col-12 text-right margin-bottom-20">
+					<app-input 
+						value="" 
+						placeholder="Search.." 
+						@onUpdateValue="onsearchFieldInput($event)"
+						/>
+				</div>
+			</div>
 			
 
 			<div class="row">
@@ -93,6 +102,7 @@
 	import Loading from '@/components/Loading'
 	import Error from '@/components/Error'
 	import MoviePoster from '@/components/MoviePoster'
+	import Input from '@/components/Input'
 
 	import {mapGetters} from 'vuex';
 	import {mapActions} from 'vuex';
@@ -102,17 +112,19 @@
 		components: {			
 			'app-loading': Loading,			
 			'app-error': Error,			
-			'movie-poster': MoviePoster			
+			'movie-poster': MoviePoster,			
+			'app-input': Input			
 		},
 		data () {
 			return {				
 				
 			}
 		},
-		 beforeRouteUpdate (to) {
+		beforeRouteUpdate (to, from, next) {
 			this.getMovie(to.params.id)
 			this.getRecommendations(to.params.id)
 			this.getGenres()
+			return next()
 		},
 		created(){			
 			this.getMovie(this.$route.params.id)
@@ -149,13 +161,15 @@
 			...mapActions('movieList', [
 				'getGenres',				
 				'updateFavorited',
-				'getRecommendations'				
+				'getRecommendations',
+				'searchMovies',				
 			]),
 			...mapActions('movie', [								
 				'getMovie'		
-			]),			
-			genreTitle (genreIds){
-				return genreIds.map(id => this.genres[id])								
+			]),	
+			onsearchFieldInput(val) {				
+				if (!val.trim()) return
+				this.$router.push({ name: 'movielist', params: { search: encodeURIComponent(val)}})
 			}
 			            
 		}

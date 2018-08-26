@@ -47,8 +47,8 @@ export const GenresService = {
 export const MoviesService = {
     all: () =>
         ApiService.get('/movie/popular', '&page=1'),
-    search: () =>
-        ApiService.get('/search/movie', '&page=1&query=оушен'),
+    search: (query) =>
+        ApiService.get('/search/movie', `&page=1&query=${query}`),
     recommendations: (id) => 
         ApiService.get(`/movie/${id}/recommendations`, `&page=1`)
    
