@@ -31,11 +31,15 @@ export default {
     totalPages:{
       type: Number,
       required: true
-    },
-    pages: {
-      type: Array,
-      required: true
     }
+  },
+  computed: {
+    pages() {
+			if(this.totalPages <= 1 ) return []
+			//active item will be in the 6-th position from 10
+			let start = this.currentPage > 6 ? this.currentPage - 6 : 0
+			return [...Array(this.totalPages).keys()].map(e => e + 1).slice(start, start + 10)
+		}
   },
   methods: {
      changePage (goToPage) {

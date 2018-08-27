@@ -28,8 +28,7 @@
 
 			<app-pagination 
 				:currentPage="currentPage"
-				:totalPages="totalPages"
-				:pages="pages"
+				:totalPages="totalPages"				
 				@onChangePage="updatePage($event)"
 				/>			
 		</div>
@@ -78,8 +77,7 @@
 				'movies',
 				'genres',
 				'currentPage',
-				'totalPages',
-				'pages',
+				'totalPages',				
 				'loading',
 				'error'
 			]),

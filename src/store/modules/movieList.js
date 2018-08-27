@@ -51,11 +51,14 @@ export default {
 		totalPages(state) {
 			return state.totalPages
 		},
+		/*
 		pages(state) {
 			if(state.totalPages <= 1 ) return []
-			let start = state.currentPage - 5 > 1 ? state.currentPage - 5 : 1
-			return [...Array(state.totalPages).keys()].map(e => e + 1).slice(start - 1, start + 9)
+			//active item will be in the 6-th position from 10
+			let start = state.currentPage > 6 ? state.currentPage - 6 : 0
+			return [...Array(state.totalPages).keys()].map(e => e + 1).slice(start, start + 10)
 		},
+		*/
 		loading (state) {
 			return state.loading
 		},		
