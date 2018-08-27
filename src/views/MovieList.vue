@@ -6,7 +6,7 @@
 			<div class="row">
 				<div class="col-12 text-right margin-bottom-20">
 					<app-input 
-						:value="searchvalue" 
+						:value="querySearchValue" 
 						placeholder="Search.." 
 						ref="searchField"
 						@onUpdateValue="onsearchFieldInput($event)"
@@ -25,29 +25,13 @@
 					@onPosterFavoriteClick="updateFavorited($event)"
 				/>
 			</div>
-			
-			
-			
-			<!--
-			<div class="pagination" v-show="!loading && movieList.length !== 0 && pageMode !== 'favorite'">
-				<div class="pagination__nav" v-if="currentPage > 6">
-					<i class="fas fa-angle-double-left" @click="onPageNumClick(1)"></i>
-					<i class="fas fa-angle-left" @click="onPageNumClick(currentPage - 1)"></i>
-				</div>
-				<div class="pagination__page-num"
-						v-for="page in totalPagesArr"
-						:class="{'pagination__page-num--active': page === currentPage}"
-						:key="page"
-						@click="onPageNumClick(page)"
-					>
-					{{page}}
-				</div>
-				<div class="pagination__nav" v-if="totalPagesArr[9] < totalPages">
-					<i class="fas fa-angle-right" @click="onPageNumClick(currentPage + 1)"></i>
-					<i class="fas fa-angle-double-right" @click="onPageNumClick(totalPages)"></i>
-				</div>
-			</div>
-			-->
+
+			<app-pagination 
+				:currentPage="currentPage"
+				:totalPages="totalPages"
+				:pages="pages"
+				@onChangePage="updatePage($event)"
+				/>			
 		</div>
 	</div>
 </template>
@@ -57,6 +41,7 @@
 	import Error from '@/components/Error'
 	import MoviePoster from '@/components/MoviePoster'
 	import Input from '@/components/Input'
+	import Pagination from '@/components/Pagination'
 
 	import {mapGetters} from 'vuex';
 	import {mapActions} from 'vuex';
@@ -67,36 +52,40 @@
 			'app-loading': Loading,			
 			'app-error': Error,			
 			'movie-poster': MoviePoster,			
-			'app-input': Input			
+			'app-input': Input,			
+			'app-pagination': Pagination			
 		},
 		data () {
 			return {
-				//searchvalue: this.$route.params.search ? decodeURIComponent(this.$route.params.search) : ''
+				inputSearchValue: ''
 			}
 		},		
 		mounted(){
 			if(this.$route.params.search) {					
 				this.$refs.searchField.$el.children[0].focus()				
 				this.getGenres()
-					.then(() => this.searchMovies(decodeURIComponent(this.$route.params.search)))					
+					.then(() => this.searchMovies({
+							query: decodeURIComponent(this.$route.params.search),
+							page: 1
+						}))					
 			} else {				
 				this.getGenres()
-					.then(() => this.getMovies())				
+					.then(() => this.getMovies({page: this.currentPage}))				
 			}		
 		},
 		computed: {
 			...mapGetters('movieList', [
 				'movies',
 				'genres',
+				'currentPage',
+				'totalPages',
+				'pages',
 				'loading',
 				'error'
 			]),
-			searchvalue() {
+			querySearchValue() {
 				return this.$route.params.search ? decodeURIComponent(this.$route.params.search) : ''
-			}
-			 
-			
-			
+			}			
 		},
 		methods: {            
 			...mapActions('movieList', [
@@ -105,15 +94,27 @@
 				'getGenres',
 				'updateFavorited'
 			]),
-			onsearchFieldInput(val) {				
+			onsearchFieldInput(val) {
 				if (!val.trim()) {
-					this.getMovies()
+					this.getMovies({page: 1})
 				} else {
-					this.searchMovies(val)
-				}				
-			}
-			
-			            
+					this.searchMovies({
+						query: val,
+						page: 1
+					})
+				}
+				this.inputSearchValue = val.trim()				
+			},
+			updatePage(page) {
+				if(this.inputSearchValue){					
+					this.searchMovies({
+						query: this.inputSearchValue,
+						page
+					})
+				} else {
+					this.getMovies({page})
+				}
+			}           
 		}
 	}
 </script>
@@ -125,29 +126,6 @@
   padding: 15px;
 }
 
-.pagination {
-  width: 100%;
-  text-align: center;
-}
-.pagination div {
-  display: inline-block;
-  cursor: pointer;
-}
-.pagination__nav i {
-  padding: 10px;
-  font-size: 18px;
-  color: $gray-color;
-}
-.pagination__page-num {
-  padding: 10px;
-  margin: 5px;
-  border: 1px solid $gray-color;
-  text-align: center;
-  max-width: 50px;
-}
-.pagination__page-num--active,
-.pagination__page-num:hover {
-  background-color: $gray-light-color;
-}
+
 
 </style>

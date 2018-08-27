@@ -21,30 +21,7 @@
 					:key="movie.id"
 					@onPosterFavoriteClick="updateFavorited($event)"
 				/>
-			</div>
-			
-			
-			
-			<!--
-			<div class="pagination" v-show="!loading && movieList.length !== 0 && pageMode !== 'favorite'">
-				<div class="pagination__nav" v-if="currentPage > 6">
-					<i class="fas fa-angle-double-left" @click="onPageNumClick(1)"></i>
-					<i class="fas fa-angle-left" @click="onPageNumClick(currentPage - 1)"></i>
-				</div>
-				<div class="pagination__page-num"
-						v-for="page in totalPagesArr"
-						:class="{'pagination__page-num--active': page === currentPage}"
-						:key="page"
-						@click="onPageNumClick(page)"
-					>
-					{{page}}
-				</div>
-				<div class="pagination__nav" v-if="totalPagesArr[9] < totalPages">
-					<i class="fas fa-angle-right" @click="onPageNumClick(currentPage + 1)"></i>
-					<i class="fas fa-angle-double-right" @click="onPageNumClick(totalPages)"></i>
-				</div>
-			</div>
-			-->
+			</div>			
 		</div>
 	</div>
 </template>
@@ -72,13 +49,7 @@
 			}
 		},
 		created(){
-			this.getGenres()
-					
-
-			//this.searchMovies()
-			//this.getRecommendations()
-			//this.getMovie()	
-            		
+			this.getGenres()            		
 		},
 		computed: {
 			...mapGetters('movieList', [
@@ -87,8 +58,6 @@
 				'loading',
 				'error'
 			])
-			
-			
 		},
 		methods: {            
 			...mapActions('movieList', [				
@@ -99,9 +68,7 @@
 			onsearchFieldInput(val) {				
 				if (!val.trim()) return
 				this.$router.push({ name: 'movielist', params: { search: encodeURIComponent(val)}})
-			}
-			
-			            
+			}           
 		}
 	}
 </script>
@@ -112,30 +79,4 @@
 .movieList-wrap {
   padding: 15px;
 }
-
-.pagination {
-  width: 100%;
-  text-align: center;
-}
-.pagination div {
-  display: inline-block;
-  cursor: pointer;
-}
-.pagination__nav i {
-  padding: 10px;
-  font-size: 18px;
-  color: $gray-color;
-}
-.pagination__page-num {
-  padding: 10px;
-  margin: 5px;
-  border: 1px solid $gray-color;
-  text-align: center;
-  max-width: 50px;
-}
-.pagination__page-num--active,
-.pagination__page-num:hover {
-  background-color: $gray-light-color;
-}
-
 </style>

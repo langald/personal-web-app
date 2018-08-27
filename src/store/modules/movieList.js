@@ -7,6 +7,8 @@ export default {
 		movies: [],
 		favorited: JSON.parse(window.localStorage.getItem('favoritedMovies')) || [],
 		genres: [],
+		currentPage: 1,
+		totalPages: 1,
 		loading: true,
 		error: ''		        		
 	},
@@ -43,6 +45,17 @@ export default {
 		favorited (state) {
 			return state.favorited
 		},
+		currentPage(state) {
+			return state.currentPage
+		},
+		totalPages(state) {
+			return state.totalPages
+		},
+		pages(state) {
+			if(state.totalPages <= 1 ) return []
+			let start = state.currentPage - 5 > 1 ? state.currentPage - 5 : 1
+			return [...Array(state.totalPages).keys()].map(e => e + 1).slice(start - 1, start + 9)
+		},
 		loading (state) {
 			return state.loading
 		},		
@@ -66,6 +79,12 @@ export default {
 		},
 		setFavorited(state, payload) {
 			state.favorited = payload
+		},
+		setCurrentPage(state, payload) {
+			state.currentPage = payload
+		},		
+		setTotalPages(state, payload) {
+			state.totalPages = payload
 		}		
 	},
 	actions: {		
@@ -89,10 +108,12 @@ export default {
 			store.commit('setLoading', true)
 			store.commit('setError', '')
 
-			return MoviesService.all()
+			return MoviesService.all(payload.page)
 			.then(({ data }) => {
 				//console.log('All ' + JSON.stringify(data))
 				store.commit('setMovies', data.results)				
+				store.commit('setCurrentPage', payload.page)				
+				store.commit('setTotalPages', data.total_pages)				
 			})			
 			.catch(error => {			   
 				store.commit('setError', error.message)			   
@@ -121,7 +142,9 @@ export default {
 			return MoviesService.search(payload)
 			.then(({ data }) => {
 				//console.log('search ' + JSON.stringify(data))
-				store.commit('setMovies', data.results)				
+				store.commit('setMovies', data.results)	
+				store.commit('setCurrentPage', payload.page)				
+				store.commit('setTotalPages', data.total_pages)				
 			})			
 			.catch(error => {			   
 				store.commit('setError', error.message)			   
