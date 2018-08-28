@@ -62,15 +62,20 @@
 		mounted(){
 			if(this.$route.params.search) {					
 				this.$refs.searchField.$el.children[0].focus()				
-				this.getGenres()
-					.then(() => this.searchMovies({
-							query: decodeURIComponent(this.$route.params.search),
-							page: 1
-						}))					
-			} else {				
-				this.getGenres()
-					.then(() => this.getMovies({page: this.currentPage}))				
-			}		
+				this.searchMovies({
+						query: decodeURIComponent(this.$route.params.search),
+						page: 1
+					})				
+			} else {
+				//если не пустой объект жанров, то грузим фильмы
+				//иначе сначала грузим жанры
+				if(Object.keys(this.genres).length) {
+					this.getMovies({page: this.currentPage})
+				} else {
+					this.getGenres()
+						.then(() => this.getMovies({page: this.currentPage}))
+				}				
+			}
 		},
 		computed: {
 			...mapGetters('movieList', [
@@ -123,7 +128,4 @@
 .movieList-wrap {
   padding: 15px;
 }
-
-
-
 </style>

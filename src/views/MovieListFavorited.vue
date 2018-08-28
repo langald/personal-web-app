@@ -48,8 +48,10 @@
 
 			}
 		},
-		created(){
-			this.getGenres()            		
+		mounted(){			  
+			if(!Object.keys(this.genres).length) {
+				this.getGenres() 
+			}        		
 		},
 		computed: {
 			...mapGetters('movieList', [
@@ -60,8 +62,7 @@
 			])
 		},
 		methods: {            
-			...mapActions('movieList', [				
-				'searchMovies',				
+			...mapActions('movieList', [
 				'getGenres',
 				'updateFavorited'
 			]),

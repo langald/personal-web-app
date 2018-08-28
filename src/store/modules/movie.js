@@ -1,4 +1,4 @@
-import { MoviesService, GenresService, MovieService } from '@/common/api.service'
+import { MovieService } from '@/common/api.service'
 
 export default {
 	namespaced: true,
@@ -24,7 +24,7 @@ export default {
 	mutations: {		
 		setLoadingMovie (state, payload) {			
 			state.loadingMovie = payload
-			console.log('loading ' + state.loadingMovie)
+			console.log('(movie_module) loading ' + state.loadingMovie)
 		},
 		setErrorMovie (state, payload) {
 			state.errorMovie = payload
@@ -46,7 +46,7 @@ export default {
 
 			return MovieService.get(id)
 			.then(({ data }) => {
-				console.log('One movie ' + JSON.stringify(data))
+				//console.log('One movie ' + JSON.stringify(data))
 				store.commit('setMovie', data)				
 			})			
 			.catch(error => {			   

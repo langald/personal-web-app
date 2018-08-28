@@ -11,8 +11,7 @@
 						@onUpdateValue="onsearchFieldInput($event)"
 						/>
 				</div>
-			</div>
-			
+			</div>			
 
 			<div class="row">
 				<div class="col-12 text-center">
@@ -73,27 +72,24 @@
 					</div>
 				</div>
 			</div>
+			
 			<div class="row margin-top-20">
 				<div class="col-12 movie-overview">
-				{{movie.overview}}
+					{{movie.overview}}
 				</div>
 			</div>
-
-			
-
 			
 			<div class="row margin-top-20 movie-recommendations" v-if="recommendations.length">
 				<div class="col-12">
-				<h3>Смотрите также</h3>
+					<h3>Смотрите также</h3>
 				</div>
 
 				<movie-poster v-for="recomendedMovie in recommendationsList"
-				:movie="recomendedMovie"
-				:key="recomendedMovie.id"
-				@onPosterFavoriteClick="updateFavorited($event)"
-				/>
-			</div>
-			
+					:movie="recomendedMovie"
+					:key="recomendedMovie.id"
+					@onPosterFavoriteClick="updateFavorited($event)"
+					/>
+			</div>			
 		</div>		
   </div>
 </template>
@@ -122,14 +118,20 @@
 		},
 		beforeRouteUpdate (to, from, next) {
 			this.getMovie(to.params.id)
-			this.getRecommendations(to.params.id)
-			this.getGenres()
+			this.getRecommendations(to.params.id)			
 			return next()
 		},
-		created(){			
-			this.getMovie(this.$route.params.id)
-			this.getRecommendations(this.$route.params.id)
-			this.getGenres()
+		mounted(){
+			if(Object.keys(this.genres).length) {
+					this.getMovie(this.$route.params.id)
+					this.getRecommendations(this.$route.params.id)
+			} else {
+				this.getGenres()
+					.then(() => {
+						this.getMovie(this.$route.params.id)
+						this.getRecommendations(this.$route.params.id)
+					})
+			}		
 		},
 		computed: {			
 			...mapGetters('movie', [			
@@ -140,6 +142,7 @@
 				
 			]),
 			...mapGetters('movieList', {
+				genres: 'genres',
 				recommendations: 'movies',
 				loadingRecomendations: 'loading',
 				errorRecomendations: 'error'

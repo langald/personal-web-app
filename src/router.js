@@ -47,7 +47,17 @@ export default new Router({
       component: E404
     }
   ],
-  mode: 'history'
+  mode: 'history',
+  scrollBehavior (to, from, savedPosition) {
+    if (to.hash) {
+      return {
+        selector: to.hash
+        // , offset: { x: 0, y: 10 }
+      }
+    } else {
+      return { x: 0, y: 0 }
+    }
+  }
   /*
   //in case your project located not in the root
   base: process.env.NODE_ENV === 'production'

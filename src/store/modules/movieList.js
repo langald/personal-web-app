@@ -1,5 +1,4 @@
-import router from '@/router'
-import { MoviesService, GenresService, MovieService } from '@/common/api.service'
+import { MoviesService, GenresService } from '@/common/api.service'
 
 export default {
 	namespaced: true,
@@ -33,14 +32,13 @@ export default {
 			return state.movies
 		},
 		genres (state) {	
-			if(state.genres.length) {
-				let genresObj = {}
+			let genresObj = {}
+			if(state.genres.length) {				
 				state.genres.forEach(item => {
 					genresObj[item.id] = item.name
-				})
-				return genresObj
+				})				
 			}	
-			return state.genres			
+			return genresObj			
 		},
 		favorited (state) {
 			return state.favorited
@@ -50,15 +48,7 @@ export default {
 		},
 		totalPages(state) {
 			return state.totalPages
-		},
-		/*
-		pages(state) {
-			if(state.totalPages <= 1 ) return []
-			//active item will be in the 6-th position from 10
-			let start = state.currentPage > 6 ? state.currentPage - 6 : 0
-			return [...Array(state.totalPages).keys()].map(e => e + 1).slice(start, start + 10)
-		},
-		*/
+		},		
 		loading (state) {
 			return state.loading
 		},		
@@ -69,7 +59,7 @@ export default {
 	mutations: {
 		setLoading (state, payload) {			
 			state.loading = payload
-			console.log('loading ' + state.loading)
+			console.log('(movieList_module) loading ' + state.loading)
 		},
 		setError (state, payload) {
 			state.error = payload
@@ -137,8 +127,7 @@ export default {
 			})
 			.then(() => store.commit('setLoading', false))
 		},
-		searchMovies(store, payload){
-			
+		searchMovies(store, payload){			
 			store.commit('setLoading', true)
 			store.commit('setError', '')
 
@@ -162,10 +151,9 @@ export default {
 				movie.isFavorited = true
 				favoritedArr.push(movie)
 			}
-			console.log(favoritedArr)			
+			//console.log(favoritedArr)			
 			window.localStorage.setItem('favoritedMovies', JSON.stringify(favoritedArr))
 			store.commit('setFavorited', favoritedArr)
-		}
-	
+		}	
 	}
 }
