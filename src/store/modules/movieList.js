@@ -111,7 +111,10 @@ export default {
 			.catch(error => {			   
 				store.commit('setError', error.message)			   
 			})
-			.then(() => store.commit('setLoading', false))
+			.then(() => {
+				store.commit('setLoading', false)
+				window.scrollTo(0, 0);
+			})
 		},
 		getRecommendations(store, id){
 			store.commit('setLoading', true)
@@ -141,7 +144,10 @@ export default {
 			.catch(error => {			   
 				store.commit('setError', error.message)			   
 			})
-			.then(() => store.commit('setLoading', false))
+			.then(() => {
+				store.commit('setLoading', false)
+				window.scrollTo(0, 0);
+			})
 		},
 		updateFavorited(store, movie){
 			let favoritedArr = [...store.state.favorited]

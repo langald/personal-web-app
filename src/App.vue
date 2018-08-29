@@ -5,19 +5,35 @@
       <router-view/>
     </div>    
     <app-footer />
+    <pointer />
   </div>
 </template>
 
 <script>
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
+import Pointer from '@/components/Pointer.vue'
 
 export default {
   name: 'App',
   components: {
     'app-header': Header,
-    'app-footer': Footer
+    'app-footer': Footer,
+    'pointer': Pointer
   }
+  /*
+  methods: {
+    handleScroll(e) {
+      console.log(e)
+    }
+  },
+  mounted () {
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+  */
 }
 </script>
 

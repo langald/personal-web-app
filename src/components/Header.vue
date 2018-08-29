@@ -1,7 +1,7 @@
 <template>
-<div class="header">
+<div class="header" :class="{scrolledHeader }" ref="header">
     <div class="container">
-        <div class="row">
+        <div class="row">            
             <navbar 
                 navbarClass="col-12" 
                 :items="[
@@ -24,16 +24,33 @@ export default {
     name: 'Header',
     components: {
         'navbar': Navbar
+    },
+    data() {
+        return {
+            scrolledHeader: false
+        }        
+    },
+    mounted () {
+        window.addEventListener('scroll', this.handleScroll);
+    },
+    destroyed () {
+        window.removeEventListener('scroll', this.handleScroll);
+    },   
+    methods: {
+        handleScroll(){
+            var scrolled = window.pageYOffset || document.documentElement.scrollTop;
+            //console.log(scrolled)
+            this.scrolledHeader = scrolled > this.$refs.header.getBoundingClientRect().bottom
+        } 
     } 
 }
 
 </script>
 
-
 <style lang="scss" scoped>
 @import "@/assets/styles/settings.scss";
 
-.header {
+.header {  
     position: fixed;
     top: 0;
     left: 0;
@@ -41,6 +58,11 @@ export default {
     z-index: 1030;    
     background-color: $black-color;
     color: $gray-color;
+    opacity: 1;
+    transition: all 2s;
+}
+.scrolledHeader {   
+    background: rgba(44, 62, 80, 0.7);
 }
 
 </style>

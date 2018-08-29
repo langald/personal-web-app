@@ -2,7 +2,7 @@
     <div class="col-12 col-sm-4 col-lg-2 movie-poster">
       <router-link :to="{name: 'movie', params: { id: movie.id }}">
         <div class="image-container">
-          <img :src="'https://image.tmdb.org/t/p/w185' + movie.poster_path" onerror="this.onerror=null;this.src='https://placeholdit.co//i/185x278?bg=000000'"/>
+          <img :src="'https://image.tmdb.org/t/p/w185X' + movie.poster_path" onerror="this.onerror=null;this.src='https://placeholdit.co//i/185x278?bg=000000'"/>
         </div>
         <div class="movie-poster__title">
           {{movie.title}}
