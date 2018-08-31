@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<pointer />
 		<app-loading v-show="loading" />
 		<app-error v-if="error" :message="error" />		
 		<div v-else class="container movieList-wrap">	
@@ -41,6 +42,7 @@
 	import MoviePoster from '@/components/MoviePoster'
 	import Input from '@/components/Input'
 	import Pagination from '@/components/Pagination'
+	import Pointer from '@/components/Pointer.vue'
 
 	import {mapGetters} from 'vuex';
 	import {mapActions} from 'vuex';
@@ -52,7 +54,8 @@
 			'app-error': Error,			
 			'movie-poster': MoviePoster,			
 			'app-input': Input,			
-			'app-pagination': Pagination			
+			'app-pagination': Pagination,
+			'pointer': Pointer			
 		},
 		data () {
 			return {

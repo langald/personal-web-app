@@ -4,22 +4,19 @@
     <div class="main-content">
       <router-view/>
     </div>    
-    <app-footer />
-    <pointer />
+    <app-footer />   
   </div>
 </template>
 
 <script>
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
-import Pointer from '@/components/Pointer.vue'
 
 export default {
   name: 'App',
   components: {
     'app-header': Header,
-    'app-footer': Footer,
-    'pointer': Pointer
+    'app-footer': Footer    
   }
   /*
   methods: {

@@ -1,17 +1,15 @@
 <template>
     <div class="updownpointer" :class="classObj" v-show="classObj.up || classObj.down" @click="onPointerClick()">
-        <i class="far " 
+        <i class="fas " 
             :class="{
-                'fa-arrow-alt-circle-up': classObj.up,
-                'fa-arrow-alt-circle-down': classObj.down
+                'fa-angle-up': classObj.up,
+                'fa-angle-down': classObj.down
             }"
             ></i>
     </div>
 </template>
 
 <script>
-
-
 export default {
     name: 'Pointer',   
     data() {
@@ -35,7 +33,7 @@ export default {
             var pageYCoords = window.pageYOffset || document.documentElement.scrollTop;
             //видимый экран страницы
             var innerHeight = document.documentElement.clientHeight;
-            console.log('pageYCoords: ' + pageYCoords + ', innerHeight: ' + innerHeight)
+            //console.log('pageYCoords: ' + pageYCoords + ', innerHeight: ' + innerHeight)
             
             if(!this.classObj.up && !this.classObj.down) {
                 if (pageYCoords > innerHeight) {                    
@@ -58,6 +56,23 @@ export default {
                         down: false
                     }
                 }
+            }
+
+            var scrollHeight = Math.max(
+                document.body.scrollHeight, document.documentElement.scrollHeight,
+                document.body.offsetHeight, document.documentElement.offsetHeight,
+                document.body.clientHeight, document.documentElement.clientHeight
+            )
+            if (scrollHeight - innerHeight - pageYCoords < 100) {
+                 this.classObj = {
+                        ...this.classObj,
+                        bottom: true
+                    }
+            } else {
+                 this.classObj = {
+                        ...this.classObj,
+                        bottom: false
+                    }
             }
         }, 
         onPointerClick() {
@@ -88,16 +103,28 @@ export default {
 
 .updownpointer {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
-    border-radius: 100%;   
-    //background: $gray-color;
-    color: $gray-color;;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    background: #fff;
+    color: $gray-color;
+    opacity: 0.4;
     cursor: pointer;
     z-index: 9999;
     line-height: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .updownpointer i {
-    font-size: 46px;
+    font-size: 36px;
+}
+
+@media only screen and (max-width: 540px) {
+    .updownpointer.bottom{
+        bottom: 110px;
+    }
 }
 </style>

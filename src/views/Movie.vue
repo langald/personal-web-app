@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<pointer />
 		<app-loading v-show="loading" />
 		<app-error v-if="error" :message="error" />
 		<div v-else class="container movie-wrap" >
@@ -99,6 +100,7 @@
 	import Error from '@/components/Error'
 	import MoviePoster from '@/components/MoviePoster'
 	import Input from '@/components/Input'
+	import Pointer from '@/components/Pointer.vue'
 
 	import {mapGetters} from 'vuex';
 	import {mapActions} from 'vuex';
@@ -109,7 +111,8 @@
 			'app-loading': Loading,			
 			'app-error': Error,			
 			'movie-poster': MoviePoster,			
-			'app-input': Input			
+			'app-input': Input,
+			'pointer': Pointer			
 		},
 		data () {
 			return {				
