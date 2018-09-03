@@ -47,14 +47,16 @@ export default {
     position: absolute;
     top: 24px;
     left: 50%;
-    width: 0;
+    width: 1%;
+    opacity: 0;
     height: 2px;
     background: $gray-light-color;
     transform: translateX(-50%);
-    transition: all 0.3s;
+    transition: width 0.3s;
 }
 .header-menu__item a:hover::after {    
-    width: 100%;    
+    width: 100%; 
+    opacity: 1;   
 }
 
 </style>
