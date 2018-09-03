@@ -9,6 +9,14 @@
 </template>
 
 <script>
+import "@/assets/styles/libs/css/bootstrap-reboot.min.css";
+import "@/assets/styles/libs/css/bootstrap-grid.min.css";
+import "@/assets/styles/libs/css/fontawesome-all.min.css";
+import "@/assets/styles/libs/css/animate.min.css";
+
+import 'aos/dist/aos.css'
+import AOS from 'aos'
+
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
 
@@ -17,20 +25,10 @@ export default {
   components: {
     'app-header': Header,
     'app-footer': Footer    
-  }
-  /*
-  methods: {
-    handleScroll(e) {
-      console.log(e)
-    }
-  },
+  },  
   mounted () {
-    window.addEventListener('scroll', this.handleScroll);
-  },
-  destroyed () {
-    window.removeEventListener('scroll', this.handleScroll);
+    AOS.init()
   }
-  */
 }
 </script>
 
@@ -44,6 +42,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;  
   color: $black-color;
   font-size: $main-font-size; 
+  overflow-x: hidden; /*To avoid blank space to the right outside of viewport after adding AOS on mobile format*/
 }
 .main-content {
   margin-top: 84px; 
