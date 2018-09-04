@@ -48,7 +48,7 @@ export const MoviesService = {
     all: (page) =>
         ApiService.get(`/movie/popular`, `&page=${page}`),
     search: ({query, page}) =>
-        ApiService.get('/search/movie', `&page=${page}&query=${query}`),
+        ApiService.get('/search/movie', `&page=${page}&query=${encodeURIComponent(query)}`),
     recommendations: (id) => 
         ApiService.get(`/movie/${id}/recommendations`, `&page=1`)
    
