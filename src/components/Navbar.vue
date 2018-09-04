@@ -30,7 +30,7 @@ export default {
 .header-menu__item {
     display: inline-block;
     list-style-type: none;
-    padding: 10px;
+    padding: 15px 10px;
 }
 .header-menu__item a {
     position: relative;
