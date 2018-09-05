@@ -23,8 +23,6 @@
 
 			this.moduleBAction('My payload')
 			this.rootAction('New payload')
-            
-            		
 		},
 		computed: {
 			...mapGetters('moduleA', {

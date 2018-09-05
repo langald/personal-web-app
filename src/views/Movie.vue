@@ -176,8 +176,7 @@
 			onsearchFieldInput(val) {				
 				if (!val.trim()) return
 				this.$router.push({ name: 'movielist', params: { search: encodeURIComponent(val)}})
-			}
-			            
+			}           
 		}
 	}
 </script>

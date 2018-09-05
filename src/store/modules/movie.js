@@ -8,7 +8,7 @@ export default {
 		errorMovie: ''        		
 	},
 	getters: {
-		movie (state, getters, rootState, rootGetters) {			
+		movie (state, getters, rootState) {			
 			return {
 				...state.movie,
 				isFavorited: rootState.movieList.favorited.filter(fm => fm.id === state.movie.id).length > 0

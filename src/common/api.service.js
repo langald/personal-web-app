@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import axios from 'axios'
 import { MOVIE_API_URL, MOVIE_API_KEY } from '@/common/config'
 

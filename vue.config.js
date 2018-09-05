@@ -8,7 +8,7 @@ module.exports = {
                 : '/',
     */
     outputDir: 'docs',
-    configureWebpack: config => {
+    configureWebpack: () => {
       if (process.env.NODE_ENV !== 'production') return
   
       return {
