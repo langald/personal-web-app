@@ -2,6 +2,10 @@ html {
    font-size: $html-font-size; 
 }
 
+::selection {    
+    background: #f2e4b9;
+}
+
 dl, ol, ul {   
     margin-bottom: 0;
 }

@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <preloader v-show="preloader" />  
     <app-header />  
     <div class="main-content">
       <router-view/>
@@ -17,17 +18,27 @@ import "@/assets/styles/libs/css/animate.min.css";
 import 'aos/dist/aos.css'
 import AOS from 'aos'
 
+import Preloader from '@/components/Preloader.vue'
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
 
 export default {
   name: 'App',
   components: {
+    'preloader': Preloader,
     'app-header': Header,
     'app-footer': Footer    
-  },  
+  }, 
+  data() {
+    return {
+      preloader: true
+    }
+  }, 
   mounted () {
     AOS.init()
+    setTimeout(() => {
+      this.preloader = false
+    }, 500);
   }
 }
 </script>
