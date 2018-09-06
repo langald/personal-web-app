@@ -11,11 +11,11 @@
 
 <script>
 export default {
-    name: 'Navbar',
-    props: {
-        navbarClass: String,
-        items: Array
-    } 
+  name: 'Navbar',
+  props: {
+    navbarClass: String,
+    items: Array
+  } 
 }
 </script>
 

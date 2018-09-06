@@ -28,7 +28,7 @@ export default new Vuex.Store({
     getItem6(store, payload){
       store.commit('setItem6', payload)
     },
-		rootActionY(store, payload){
+    rootActionY(store, payload){
       setTimeout(() => {
         console.log('\n------- Root Action arguments ----- ')
         console.log(JSON.stringify(store))

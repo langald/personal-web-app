@@ -40,20 +40,20 @@
 
 <script>
 
-  export default {
-		name: 'About',
-		components: {			
+export default {
+  name: 'About',
+  components: {			
 				
-		},
-		data () {
-			return {
+  },
+  data () {
+    return {
 			
-			}
-		},		
-		mounted(){
-    
     }
+  },		
+  mounted(){
+    
   }
+}
 </script>
 
 

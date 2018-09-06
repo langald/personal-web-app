@@ -27,7 +27,7 @@
 <script>
 export default {
   name: 'MoviePoster',
-   props: {
+  props: {
     movie: {
       type: Object,
       required: true

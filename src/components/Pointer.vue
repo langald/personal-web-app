@@ -11,89 +11,89 @@
 
 <script>
 export default {
-    name: 'Pointer',   
-    data() {
-        return {
-          pageYCoordsLabel: 0,
-          classObj: {
-              up: false,
-              down: false
-          }
-        }        
-    },
-    mounted () {
-        window.addEventListener('scroll', this.handleScroll);
-    },
-    destroyed () {
-        window.removeEventListener('scroll', this.handleScroll);
-    },   
-    methods: {
-        handleScroll(){  
-            //текущий скролл страницы
-            var pageYCoords = window.pageYOffset || document.documentElement.scrollTop;
-            //видимый экран страницы
-            var innerHeight = document.documentElement.clientHeight;
-            //console.log('pageYCoords: ' + pageYCoords + ', innerHeight: ' + innerHeight)
+  name: 'Pointer',   
+  data() {
+    return {
+      pageYCoordsLabel: 0,
+      classObj: {
+        up: false,
+        down: false
+      }
+    }        
+  },
+  mounted () {
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.handleScroll);
+  },   
+  methods: {
+    handleScroll(){  
+      //текущий скролл страницы
+      var pageYCoords = window.pageYOffset || document.documentElement.scrollTop;
+      //видимый экран страницы
+      var innerHeight = document.documentElement.clientHeight;
+      //console.log('pageYCoords: ' + pageYCoords + ', innerHeight: ' + innerHeight)
             
-            if(!this.classObj.up && !this.classObj.down) {
-                if (pageYCoords > innerHeight) {                    
-                    this.classObj = {
-                        up: true,
-                        down: false
-                    }
-                }
-            } else if (this.classObj.up) {
-                if (pageYCoords < innerHeight) {
-                    this.classObj = {
-                        up: false,
-                        down: false
-                    }
-                }
-            } else if(this.classObj.down) {
-                if (pageYCoords > innerHeight) {
-                     this.classObj = {
-                        up: true,
-                        down: false
-                    }
-                }
-            }
-
-            var scrollHeight = Math.max(
-                document.body.scrollHeight, document.documentElement.scrollHeight,
-                document.body.offsetHeight, document.documentElement.offsetHeight,
-                document.body.clientHeight, document.documentElement.clientHeight
-            )
-            if (scrollHeight - innerHeight - pageYCoords < 100) {
-                 this.classObj = {
-                        ...this.classObj,
-                        bottom: true
-                    }
-            } else {
-                 this.classObj = {
-                        ...this.classObj,
-                        bottom: false
-                    }
-            }
-        }, 
-        onPointerClick() {
-            var pageYCoords = window.pageYOffset || document.documentElement.scrollTop;
-
-            if(this.classObj.up) {
-                this.pageYCoordsLabel = pageYCoords;
-                window.scrollTo(0, 0);
-                this.classObj = {                    
-                    up: false,
-                    down: true
-                }                
-            } else {
-                window.scrollTo(0, this.pageYCoordsLabel);
-                 this.classObj = {                    
-                    up: true,
-                    down: false
-                }
-            }            
+      if(!this.classObj.up && !this.classObj.down) {
+        if (pageYCoords > innerHeight) {                    
+          this.classObj = {
+            up: true,
+            down: false
+          }
         }
-    } 
+      } else if (this.classObj.up) {
+        if (pageYCoords < innerHeight) {
+          this.classObj = {
+            up: false,
+            down: false
+          }
+        }
+      } else if(this.classObj.down) {
+        if (pageYCoords > innerHeight) {
+          this.classObj = {
+            up: true,
+            down: false
+          }
+        }
+      }
+
+      var scrollHeight = Math.max(
+        document.body.scrollHeight, document.documentElement.scrollHeight,
+        document.body.offsetHeight, document.documentElement.offsetHeight,
+        document.body.clientHeight, document.documentElement.clientHeight
+      )
+      if (scrollHeight - innerHeight - pageYCoords < 100) {
+        this.classObj = {
+          ...this.classObj,
+          bottom: true
+        }
+      } else {
+        this.classObj = {
+          ...this.classObj,
+          bottom: false
+        }
+      }
+    }, 
+    onPointerClick() {
+      var pageYCoords = window.pageYOffset || document.documentElement.scrollTop;
+
+      if(this.classObj.up) {
+        this.pageYCoordsLabel = pageYCoords;
+        window.scrollTo(0, 0);
+        this.classObj = {                    
+          up: false,
+          down: true
+        }                
+      } else {
+        window.scrollTo(0, this.pageYCoordsLabel);
+        this.classObj = {                    
+          up: true,
+          down: false
+        }
+      }            
+    }
+  } 
 }
 
 </script>

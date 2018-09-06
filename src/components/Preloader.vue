@@ -11,12 +11,12 @@
 
 <script>
 export default {
-    name: 'Preloader',   
-    data() {
-        return {
+  name: 'Preloader',   
+  data() {
+    return {
          
-        }        
-    }
+    }        
+  }
 }
 </script>
 

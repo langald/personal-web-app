@@ -35,14 +35,14 @@ export default {
   },
   computed: {
     pages() {
-			if(this.totalPages <= 1 ) return []
-			//active item will be in the 6-th position from 10
-			let start = this.currentPage > 6 ? this.currentPage - 6 : 0
-			return [...Array(this.totalPages).keys()].map(e => e + 1).slice(start, start + 10)
-		}
+      if(this.totalPages <= 1 ) return []
+      //active item will be in the 6-th position from 10
+      let start = this.currentPage > 6 ? this.currentPage - 6 : 0
+      return [...Array(this.totalPages).keys()].map(e => e + 1).slice(start, start + 10)
+    }
   },
   methods: {
-     changePage (goToPage) {
+    changePage (goToPage) {
       if (goToPage === this.currentPage) return
       this.$emit('onChangePage', goToPage)
     }

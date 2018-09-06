@@ -21,28 +21,28 @@
 import Navbar from '@/components/Navbar.vue'
 
 export default {
-    name: 'Header',
-    components: {
-        'navbar': Navbar
-    },
-    data() {
-        return {
-            scrolledHeader: false
-        }        
-    },
-    mounted () {
-        window.addEventListener('scroll', this.handleScroll);
-    },
-    destroyed () {
-        window.removeEventListener('scroll', this.handleScroll);
-    },   
-    methods: {
-        handleScroll(){
-            var scrolled = window.pageYOffset || document.documentElement.scrollTop;
-            //console.log(scrolled)
-            this.scrolledHeader = scrolled > this.$refs.header.getBoundingClientRect().bottom
-        } 
+  name: 'Header',
+  components: {
+    'navbar': Navbar
+  },
+  data() {
+    return {
+      scrolledHeader: false
+    }        
+  },
+  mounted () {
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.handleScroll);
+  },   
+  methods: {
+    handleScroll(){
+      var scrolled = window.pageYOffset || document.documentElement.scrollTop;
+      //console.log(scrolled)
+      this.scrolledHeader = scrolled > this.$refs.header.getBoundingClientRect().bottom
     } 
+  } 
 }
 
 </script>

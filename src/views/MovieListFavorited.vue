@@ -28,53 +28,53 @@
 </template>
 
 <script>
-	import Loading from '@/components/Loading'
-	import Error from '@/components/Error'
-	import MoviePoster from '@/components/MoviePoster'
-	import Input from '@/components/Input'
-	import Pointer from '@/components/Pointer.vue'
+import Loading from '@/components/Loading'
+import Error from '@/components/Error'
+import MoviePoster from '@/components/MoviePoster'
+import Input from '@/components/Input'
+import Pointer from '@/components/Pointer.vue'
 
-	import {mapGetters} from 'vuex';
-	import {mapActions} from 'vuex';
+import {mapGetters} from 'vuex';
+import {mapActions} from 'vuex';
 
-	export default {
-		name: 'MovieListFavorited',
-		components: {			
-			'app-loading': Loading,			
-			'app-error': Error,			
-			'movie-poster': MoviePoster,
-			'app-input': Input,
-			'pointer': Pointer			
-		},
-		data () {
-			return {
+export default {
+  name: 'MovieListFavorited',
+  components: {			
+    'app-loading': Loading,			
+    'app-error': Error,			
+    'movie-poster': MoviePoster,
+    'app-input': Input,
+    'pointer': Pointer			
+  },
+  data () {
+    return {
 
-			}
-		},
-		mounted(){			  
-			if(!Object.keys(this.genres).length) {
-				this.getGenres() 
-			}        		
-		},
-		computed: {
-			...mapGetters('movieList', [
-				'favorited',
-				'genres',
-				'loading',
-				'error'
-			])
-		},
-		methods: {            
-			...mapActions('movieList', [
-				'getGenres',
-				'updateFavorited'
-			]),
-			onsearchFieldInput(val) {				
-				if (!val.trim()) return
-				this.$router.push({ name: 'movielist', params: { search: encodeURIComponent(val)}})
-			}           
-		}
-	}
+    }
+  },
+  mounted(){			  
+    if(!Object.keys(this.genres).length) {
+      this.getGenres() 
+    }        		
+  },
+  computed: {
+    ...mapGetters('movieList', [
+      'favorited',
+      'genres',
+      'loading',
+      'error'
+    ])
+  },
+  methods: {            
+    ...mapActions('movieList', [
+      'getGenres',
+      'updateFavorited'
+    ]),
+    onsearchFieldInput(val) {				
+      if (!val.trim()) return
+      this.$router.push({ name: 'movielist', params: { search: encodeURIComponent(val)}})
+    }           
+  }
+}
 </script>
 
 <style lang="scss" scoped>

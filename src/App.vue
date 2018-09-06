@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    <preloader v-show="preloader" />  
-    <app-header />  
+    <preloader v-show="preloader" />
+    <app-header />
     <div class="main-content">
       <router-view/>
-    </div>    
-    <app-footer />   
+    </div>
+    <app-footer />
   </div>
 </template>
 
@@ -27,13 +27,13 @@ export default {
   components: {
     'preloader': Preloader,
     'app-header': Header,
-    'app-footer': Footer    
-  }, 
+    'app-footer': Footer
+  },
   data() {
     return {
       preloader: true
     }
-  }, 
+  },
   mounted () {
     AOS.init()
     setTimeout(() => {
@@ -50,13 +50,13 @@ export default {
 #app {
   font-family: $font-stack;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;  
+  -moz-osx-font-smoothing: grayscale;
   color: $black-color;
-  font-size: $main-font-size; 
+  font-size: $main-font-size;
   overflow-x: hidden; /*To avoid blank space to the right outside of viewport after adding AOS on mobile format*/
 }
 .main-content {
-  margin-top: 84px; 
+  margin-top: 84px;
   min-height: calc(100vh - 168px);
 }
 </style>
