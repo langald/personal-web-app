@@ -22,39 +22,47 @@ const errorHandler = (error, url) => {
   }    
 }
 const ApiService = {    
-  get: (url, search = '') =>
-    axios.get(`${MOVIE_API_URL}${url}?api_key=${MOVIE_API_KEY}&language=ru${search}`)           
+  get: (url) =>
+    axios.get(url)           
       .catch(error =>  errorHandler(error, url)),     
-  post: (url, search = '', body) =>
-    axios.post(`${MOVIE_API_URL}${url}?api_key=${MOVIE_API_KEY}&language=ru${search}`, body)
+  post: (url, body) =>
+    axios.post(url, body)
       .catch(error =>  errorHandler(error, url)),
-  put: (url, search = '', body) =>
-    axios.put(`${MOVIE_API_URL}${url}?api_key=${MOVIE_API_KEY}&language=ru${search}`, body)
+  put: (url, body) =>
+    axios.put(url, body)
       .catch(error =>  errorHandler(error, url)), 
-  del: (url, search = '') =>
-    axios.del(`${MOVIE_API_URL}${url}?api_key=${MOVIE_API_KEY}&language=ru${search}`)
+  del: (url) =>
+    axios.del(url)
       .catch(error =>  errorHandler(error, url)), 
 }
 
 export default ApiService
 
+function constructMovieFullUrl(url, search = '') {
+  return `${MOVIE_API_URL}${url}?api_key=${MOVIE_API_KEY}&language=ru${search}`
+}
+
 export const GenresService = {
   all: () =>
-    ApiService.get('/genre/movie/list')
+    ApiService.get(constructMovieFullUrl('/genre/movie/list'))
 }
 
 export const MoviesService = {
   all: (page) =>
-    ApiService.get(`/movie/popular`, `&page=${page}`),
+    ApiService.get(constructMovieFullUrl(`/movie/popular`, `&page=${page}`)),
   search: ({query, page}) =>
-    ApiService.get('/search/movie', `&page=${page}&query=${encodeURIComponent(query)}`),
+    ApiService.get(constructMovieFullUrl('/search/movie', `&page=${page}&query=${encodeURIComponent(query)}`)),
   recommendations: (id) => 
-    ApiService.get(`/movie/${id}/recommendations`, `&page=1`)
+    ApiService.get(constructMovieFullUrl(`/movie/${id}/recommendations`, `&page=1`))
    
 }
 export const MovieService = {
   get: (id) =>
-    ApiService.get(`/movie/${id}`)
-    
+    ApiService.get(constructMovieFullUrl(`/movie/${id}`))    
 }
 
+
+export const i18nAPIService = {
+  get: (lang) =>
+    ApiService.get('/locales/'  + lang + '.json')    
+}
