@@ -2,6 +2,7 @@
   <div class="container">    
     <h1>This is SecretPage1</h1>  
     <p>{{moduleA_item1}}</p> 
+    <p>{{$t("greeting")}} {{$t("name")}}</p> 
   </div>
 </template>
 
