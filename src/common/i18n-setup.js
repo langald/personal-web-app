@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
 import axios from 'axios'
+import router from '@/router'
 import { i18nAPIService } from '@/common/api.service'
 
 Vue.use(VueI18n)
@@ -8,11 +9,11 @@ Vue.use(VueI18n)
 export const defaultLocale = 'en'
 
 export const i18n = new VueI18n({
-  locale: defaultLocale, // set locale
+  locale: '',
   fallbackLocale: defaultLocale
 })
 
-const loadedLanguages = [defaultLocale] // our default language that is preloaded 
+const loadedLanguages = []
 
 function setI18nLanguage (lang) {
   i18n.locale = lang
@@ -66,7 +67,9 @@ export function loadLanguageAsync (lang) {
           return setI18nLanguage(lang)       
         })			
         .catch(error => {
-          console.log(error.message)         	  
+          console.log(error.message) 
+          console.log('Redirecting to main page...')        	  
+          router.push({ name: 'defaultUrl' })
         })
     } 
     return Promise.resolve(setI18nLanguage(lang))

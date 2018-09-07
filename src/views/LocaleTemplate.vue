@@ -6,14 +6,6 @@
 
 <script>
 export default {
-  name: 'TestDefault',
-  components: {			
-				
-  },
-  data () {
-    return {
-			
-    }
-  }
+  name: 'LocaleTemplate'
 }
 </script>

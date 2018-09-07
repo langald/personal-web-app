@@ -7,7 +7,7 @@ import MovieListFavorited from './views/MovieListFavorited.vue'
 import Movie from './views/Movie.vue'
 import SecretPage1 from './views/SecretPage1.vue'
 import E404 from './views/E404.vue'
-import TestDefault from './views/TestDefault.vue'
+import LocaleTemplate from './views/LocaleTemplate.vue'
 
 import { defaultLocale } from './common/i18n-setup.js'
 
@@ -17,19 +17,18 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: `/${defaultLocale}`,
+      name: 'defaultUrl',
+      redirect: `/${defaultLocale}`      
     },
     {
-      path: '/:locale',
-      /*
-      component: {
-        template: '<router-view />'        
-      },
-      */
-      //name: 'testDefault',
-      component: TestDefault,
-
-      
+      path: '/:locale',  
+      //name: 'localeUrl', 
+      /** Named Route 'localeUrl' has a default child route. 
+        * When navigating to this named route (:to="{name: 'localeUrl'"), 
+        * the default child route will not be rendered. 
+        * Remove the name from this route and use the name of the default child route for named links instead.
+        */  
+      component: LocaleTemplate,
       children: [
         {
           path: '',
@@ -37,39 +36,36 @@ export default new Router({
           component: Home
         },
         {
-          path: '/about',
+          path: 'about',
           name: 'about',
           component: About
         },
         {
-          path: '/secretpage1',
+          path: 'secretpage1',
           name: 'secretpage1',
           component: SecretPage1
         },
         {
-          path: '/movielist/:search?',
+          path: 'movielist/:search?',
           name: 'movielist',
           component: MovieList
         },
         {
-          path: '/favorited',
+          path: 'favorited',
           name: 'favorited',
           component: MovieListFavorited
         },
         {
-          path: '/movie/:id',
+          path: 'movie/:id',
           name: 'movie',
           component: Movie
         },
+        {
+          path: '*',
+          component: E404
+        } 
       ]
-      
-
-
-    },
-    {
-      path: '*',
-      component: E404
-    }
+    }    
   ],
   mode: 'history',
   scrollBehavior (to) {
