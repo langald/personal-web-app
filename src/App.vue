@@ -53,7 +53,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: $black-color;
   font-size: $main-font-size;
-  overflow-x: hidden; /*To avoid blank space to the right outside of viewport after adding AOS on mobile format*/
+  overflow: hidden; /*To avoid blank space to the right outside of viewport after adding AOS on mobile format*/
 }
 .main-content {
   margin-top: 84px;

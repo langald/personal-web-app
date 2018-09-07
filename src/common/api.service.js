@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { MOVIE_API_URL, MOVIE_API_KEY } from '@/common/config'
-
+import { i18n } from '@/common/i18n-setup.js'
 
 const errorHandler = (error, url) => {
   if (error.response) {
@@ -21,6 +21,7 @@ const errorHandler = (error, url) => {
     throw new Error(`${url} - ${error.message}`) 
   }    
 }
+
 const ApiService = {    
   get: (url) =>
     axios.get(url)           
@@ -39,7 +40,7 @@ const ApiService = {
 export default ApiService
 
 function constructMovieFullUrl(url, search = '') {
-  return `${MOVIE_API_URL}${url}?api_key=${MOVIE_API_KEY}&language=ru${search}`
+  return `${MOVIE_API_URL}${url}?api_key=${MOVIE_API_KEY}&language=${i18n.locale}${search}`
 }
 
 export const GenresService = {
@@ -64,5 +65,5 @@ export const MovieService = {
 
 export const i18nAPIService = {
   get: (lang) =>
-    ApiService.get('/locales/'  + lang + '.json')    
+    ApiService.get(`/locales/${lang}.json`)    
 }

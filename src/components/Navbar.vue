@@ -4,9 +4,9 @@
             v-for="(item, index) in items"
             :key="index"
             >
-            <router-link :to="{name: item.to}" >{{item.title}}</router-link>
-         </li>        
-    </ul>  
+            <router-link :to="{name: item.to, params: {locale: $i18n.locale}}" >{{item.title}}</router-link>
+         </li>         
+    </ul>      
 </template>
 
 <script>
@@ -15,6 +15,11 @@ export default {
   props: {
     navbarClass: String,
     items: Array
+  },
+  data() {
+    return {
+     
+    }
   } 
 }
 </script>
