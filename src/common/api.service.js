@@ -64,5 +64,5 @@ export const MovieService = {
 
 export const i18nAPIService = {
   get: (lang) =>
-    ApiService.get('/locales/'  + lang + '.json')    
+    ApiService.get(`/locales/${lang}.json`)    
 }

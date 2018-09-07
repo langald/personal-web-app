@@ -5,12 +5,14 @@ import { i18nAPIService } from '@/common/api.service'
 
 Vue.use(VueI18n)
 
+export const defaultLocale = 'en'
+
 export const i18n = new VueI18n({
-  locale: 'en', // set locale
-  fallbackLocale: 'en'
+  locale: defaultLocale, // set locale
+  fallbackLocale: defaultLocale
 })
 
-const loadedLanguages = ['en'] // our default language that is preloaded 
+const loadedLanguages = [defaultLocale] // our default language that is preloaded 
 
 function setI18nLanguage (lang) {
   i18n.locale = lang

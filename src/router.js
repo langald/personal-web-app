@@ -7,6 +7,9 @@ import MovieListFavorited from './views/MovieListFavorited.vue'
 import Movie from './views/Movie.vue'
 import SecretPage1 from './views/SecretPage1.vue'
 import E404 from './views/E404.vue'
+import TestDefault from './views/TestDefault.vue'
+
+import { defaultLocale } from './common/i18n-setup.js'
 
 Vue.use(Router)
 
@@ -14,33 +17,54 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
+      redirect: `/${defaultLocale}`,
     },
     {
-      path: '/about',
-      name: 'about',
-      component: About
-    },
-    {
-      path: '/secretpage1',
-      name: 'secretpage1',
-      component: SecretPage1
-    },
-    {
-      path: '/movielist/:search?',
-      name: 'movielist',
-      component: MovieList
-    },
-    {
-      path: '/favorited',
-      name: 'favorited',
-      component: MovieListFavorited
-    },
-    {
-      path: '/movie/:id',
-      name: 'movie',
-      component: Movie
+      path: '/:locale',
+      /*
+      component: {
+        template: '<router-view />'        
+      },
+      */
+      //name: 'testDefault',
+      component: TestDefault,
+
+      
+      children: [
+        {
+          path: '',
+          name: 'home',
+          component: Home
+        },
+        {
+          path: '/about',
+          name: 'about',
+          component: About
+        },
+        {
+          path: '/secretpage1',
+          name: 'secretpage1',
+          component: SecretPage1
+        },
+        {
+          path: '/movielist/:search?',
+          name: 'movielist',
+          component: MovieList
+        },
+        {
+          path: '/favorited',
+          name: 'favorited',
+          component: MovieListFavorited
+        },
+        {
+          path: '/movie/:id',
+          name: 'movie',
+          component: Movie
+        },
+      ]
+      
+
+
     },
     {
       path: '*',
