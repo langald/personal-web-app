@@ -5,16 +5,24 @@
             :key="index"
             >
             <router-link :to="{name: item.to, params: {locale: $i18n.locale}}" >{{item.title}}</router-link>
-         </li>         
+         </li> 
+         <li>            
+            <locale-switcher />            
+         </li>               
     </ul>      
 </template>
 
 <script>
+import LocaleSwitcher from '@/components/LocaleSwitcher.vue'
+
 export default {
   name: 'Navbar',
   props: {
     navbarClass: String,
     items: Array
+  },
+  components: {
+    'locale-switcher': LocaleSwitcher
   },
   data() {
     return {

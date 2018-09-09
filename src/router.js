@@ -9,7 +9,7 @@ import SecretPage1 from './views/SecretPage1.vue'
 import E404 from './views/E404.vue'
 import LocaleTemplate from './views/LocaleTemplate.vue'
 
-import { defaultLocale } from './common/i18n-setup.js'
+import {defaultLocale} from './common/config'
 
 Vue.use(Router)
 
@@ -19,6 +19,7 @@ export default new Router({
       path: '/',
       name: 'defaultUrl',
       redirect: `/${defaultLocale}`      
+      //redirect: `/de`      
     },
     {
       path: '/:locale',  

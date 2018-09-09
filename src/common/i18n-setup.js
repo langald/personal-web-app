@@ -3,10 +3,9 @@ import VueI18n from 'vue-i18n'
 import axios from 'axios'
 import router from '@/router'
 import { i18nAPIService } from '@/common/api.service'
+import { defaultLocale } from '@/common/config'
 
 Vue.use(VueI18n)
-
-export const defaultLocale = 'en'
 
 export const i18n = new VueI18n({
   locale: '',
