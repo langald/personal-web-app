@@ -1,40 +1,37 @@
 <template>
-    <li class="nav-item dropdown">
-        <a
-            href="#"
-            role="button"
-            id="navbarDropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-            data-toggle="dropdown"
-            class="nav-link dropdown-toggle"
-        >
+    <div class="localeSwitcher">
+        <a href="" 
+            class="localeSwitcher__link"
+            @click.stop.prevent="toggleDropdown()" 
+            >
             <!--
             <img
                 :src="icons[currentLocale]"
                 class="country-icon as-toggle"
             />
             -->
+            {{ currentLocale }}
+            {{ currentLocaleName }}
         </a>
 
-        <div
-            aria-labelledby="navbarDropdown"
-            class="dropdown-menu dropdown-menu-right"
-        >
-            <router-link
+        <ul v-show="dropdownShow" class="localeSwitcher__menu">
+            <li class="localeSwitcher__item"
                 v-for="locale in locales"
                 :key="locale.code"
-                :to="`/${locale.code}`"
-                class="dropdown-item"
-            >
-                <!--
-                <img :src="icons[locale.code]" class="country-icon" />
-                -->
+                @click="toggleDropdown()">
+                    <router-link                    
+                        :to="{name: curentRoutName, params: {locale: locale.code }}"
+                        class="localeSwitcher__link"                       
+                        >
+                        <!--
+                        <img :src="icons[locale.code]" class="country-icon" />
+                        -->
 
-                <span class="locale-name">{{locale.name}}</span>
-            </router-link>
-        </div>
-    </li>
+                        <span class="locale-name">{{locale.name}}</span>
+                    </router-link>
+            </li>
+        </ul>
+    </div>
 </template>
 
 <script>
@@ -57,19 +54,32 @@ export default {
         ja: jaIcon,
       },
       */
-      locales,
+      locales,     
+      dropdownShow: false,
     }
   },
-
-  computed: {
+  computed: {   
     currentLocale() {
       return this.$route.params.locale
     },
-  },
+    currentLocaleName() {     
+      if (this.currentLocale) return this.locales.filter(item => item.code === this.currentLocale)[0].name 
+      return ""
+    },    
+    curentRoutName() {     
+      return this.$route.name || "home"
+    }
+  },  
+  methods: {
+    toggleDropdown() {     
+      this.dropdownShow = !this.dropdownShow           
+    }
+  } 
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "@/assets/styles/settings.scss";
     .country-icon {
         width: 20px;
         height: auto;
@@ -87,4 +97,35 @@ export default {
         display: inline-block;
         vertical-align: baseline;
     }
+
+
+   
+
+   .localeSwitcher {
+       position: relative;
+   }
+   .localeSwitcher__link {
+        display: block;    
+        font-weight: bold;
+        color: $gray-color;
+        text-decoration: none;  
+    }
+    
+    .localeSwitcher__menu {
+        position: absolute;
+        left: -15px;
+        top: 35px;
+        margin: 0;
+        padding: 0;
+        background-color: $black-color;
+    }
+    .localeSwitcher__item {
+        display: block;
+        list-style-type: none;
+        padding: 5px 15px;
+        text-align: left;
+    }
+   
+     
+
 </style>

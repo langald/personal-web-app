@@ -10,12 +10,12 @@ export const locales = [
   },
   {
     code: 'ru',
-    name: 'Russian',
+    name: 'Русский',
     dir: 'ltr',
   },
   {
     code: 'de',
-    name: 'German',
+    name: 'Deutch',
     dir: 'ltr',
   },
 ]

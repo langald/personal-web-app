@@ -6,7 +6,7 @@
             >
             <router-link :to="{name: item.to, params: {locale: $i18n.locale}}" >{{item.title}}</router-link>
          </li> 
-         <li>            
+         <li class="header-menu__item">            
             <locale-switcher />            
          </li>               
     </ul>      
