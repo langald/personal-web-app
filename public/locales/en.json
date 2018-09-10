@@ -1,4 +1,6 @@
 {
-  "greeting": "Hello",
-  "name": "Jimmy"
+  "translation": {
+    "greeting": "Hello",
+    "name": "Jimmy"
+  }
 }

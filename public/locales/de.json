@@ -1,4 +1,6 @@
 { 
-  "greeting": "Guten Tag",
-  "name": "Jimmy"
+  "translation": {
+    "greeting": "Guten Tag",
+    "name": "Jimmy"
+  }
 }

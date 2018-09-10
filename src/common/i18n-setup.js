@@ -57,7 +57,7 @@ export function loadLanguageAsync (lang, to) {
           if (Object.keys(data).length === 0) {
             return Promise.reject(new Error('locale empty !!'))
           } else {            
-            return Promise.resolve(data)
+            return Promise.resolve(data.translation)
           }
         })
         .then((message) => {
