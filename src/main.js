@@ -10,7 +10,7 @@ Vue.config.productionTip = false
 
 router.beforeEach((to, from, next) => {  
   const lang = to.params.locale
-  loadLanguageAsync(lang).then(() => next())
+  loadLanguageAsync(lang, to).then(() => next())
 })
 
 new Vue({

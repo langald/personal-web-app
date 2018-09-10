@@ -21,7 +21,7 @@ function setI18nLanguage (lang) {
   return lang
 }
 
-export function loadLanguageAsync (lang) {
+export function loadLanguageAsync (lang, to) {
   if (i18n.locale !== lang) {
     if (!loadedLanguages.includes(lang)) {
 
@@ -67,8 +67,9 @@ export function loadLanguageAsync (lang) {
         })			
         .catch(error => {
           console.log(error.message) 
-          console.log('Redirecting to main page...')        	  
-          router.push({ name: 'defaultUrl' })
+          console.log('Redirecting to default lang...')        	  
+          //router.push({ name: 'defaultUrl' })         
+          router.push({ name: to.name, params: {locale: defaultLocale } })
         })
     } 
     return Promise.resolve(setI18nLanguage(lang))
