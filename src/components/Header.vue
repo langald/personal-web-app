@@ -1,9 +1,8 @@
 <template>
 <div class="header" :class="{scrolledHeader }" ref="header">
     <div class="container">
-        <div class="row">            
-            <navbar 
-                navbarClass="col-12" 
+                 
+            <navbar                 
                 :items="[
                     {to: 'home', title: 'Home'}, 
                     {to: 'about', title: 'About'},
@@ -11,7 +10,7 @@
                     {to: 'favorited', title: 'Favorited'}
                 ]"
             />                    
-        </div>
+        
     </div>
 </div>
 </template>

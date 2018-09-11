@@ -126,4 +126,13 @@ export default {
         vertical-align: baseline;
         padding-left: 10px;
     }
+
+
+    @media only screen and (max-width: 720px) {
+        .localeSwitcher__menu {
+            position: relative;
+            top: 10px;
+            background-color: transparent;
+        }  
+    }
 </style>
