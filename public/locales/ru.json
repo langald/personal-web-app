@@ -1,6 +1,10 @@
 { 
   "translation": {
     "greeting": "Привет",
-    "name": "Джимми"
+    "name": "Джимми",
+    "navbar_home": "Главная",
+    "navbar_about": "О себе",
+    "navbar_movielist": "Лента",
+    "navbar_favorited": "Избранное"
   }
 }

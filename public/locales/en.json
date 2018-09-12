@@ -1,6 +1,10 @@
 {
   "translation": {
     "greeting": "Hello",
-    "name": "Jimmy"
+    "name": "Jimmy",
+    "navbar_home": "Home",
+    "navbar_about": "About",
+    "navbar_movielist": "Movies",
+    "navbar_favorited": "Favorited"
   }
 }
