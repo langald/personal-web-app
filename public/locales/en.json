@@ -1,4 +1,49 @@
 {
-  "greeting": "Hello",
-  "name": "Jimmy"
+  "translation": {
+    "greeting": "Hello",
+    "name": "Jimmy",
+    "navbar" : {
+      "home": "Home",
+      "about": "About",
+      "movielist": "Movies",
+      "favorited": "Favorited"
+    },
+    "home_page" : {
+      "greeting": "Hello",
+      "name": "I'm Larissa Angald",
+      "profession": "Frontend Developer",
+      "skills_title": "My skills",
+      "skill_1": "HTML, CSS, JavaScript, jQuery",
+      "skill_2": "AJAX requests",
+      "skill_3": "REST API",
+      "skill_4": "Axios",
+      "skill_5": "ES5/6",
+      "skill_6": "Vue.js + Vuex + Router",
+      "skill_7": "Basic React + Redux"    
+    },
+    "about_page": {
+      "quote": "„I believe that thoughtful technology can solve any problem. <br> And maybe save the world. <br> At least make it more awesome.“",
+      "item_1" : {
+        "title": "Creativity",
+        "text": "The ability to see connections and relationships where others have not"
+      },
+      "item_2" : {
+        "title": "Strategy",
+        "text": "Plan for achieving vision, prioritizing objectives, competing successfully"
+      },
+      "item_3" : {
+        "title": "Technology",
+        "text": "The right tech stack is the key to project’s growth and success"
+      }      
+    },
+    "movie_page": {
+      "title": "Title",
+      "genre": "Genre",
+      "country": "Country",
+      "release_date": "Release date",
+      "rating": "Rating",
+      "favorited": "Favorited",
+      "see_also": "See also"
+    }    
+  }
 }

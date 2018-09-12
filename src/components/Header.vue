@@ -1,17 +1,9 @@
 <template>
 <div class="header" :class="{scrolledHeader }" ref="header">
     <div class="container">
-        <div class="row">            
-            <navbar 
-                navbarClass="col-12" 
-                :items="[
-                    {to: 'home', title: 'Home'}, 
-                    {to: 'about', title: 'About'},
-                    {to: 'movielist', title: 'Movies'},
-                    {to: 'favorited', title: 'Favorited'}
-                ]"
-            />                    
-        </div>
+            <navbar                
+                :items="navbarItems"
+            />
     </div>
 </div>
 </template>
@@ -30,8 +22,18 @@ export default {
       scrolledHeader: false
     }        
   },
+  computed: {  
+    navbarItems() {
+      return [
+        {to: 'home', title: this.$t("navbar.home")}, 
+        {to: 'about', title: this.$t("navbar.about")},
+        {to: 'movielist', title: this.$t("navbar.movielist")},
+        {to: 'favorited', title: this.$t("navbar.favorited")}
+      ]
+    } 
+  },
   mounted () {
-    window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener('scroll', this.handleScroll);    
   },
   destroyed () {
     window.removeEventListener('scroll', this.handleScroll);
@@ -40,7 +42,7 @@ export default {
     handleScroll(){
       var scrolled = window.pageYOffset || document.documentElement.scrollTop;
       //console.log(scrolled)
-      this.scrolledHeader = scrolled > this.$refs.header.getBoundingClientRect().bottom
+      this.scrolledHeader = scrolled > this.$refs.header.getBoundingClientRect().bottom     
     } 
   } 
 }

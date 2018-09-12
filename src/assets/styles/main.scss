@@ -9,6 +9,9 @@ html {
 dl, ol, ul {
   margin-bottom: 0;
 }
+button:focus {
+  outline: none;
+}
 
 .image-container {
   width: 100%;

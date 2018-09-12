@@ -13,6 +13,7 @@ import {mapActions} from 'vuex';
 export default {
   created(){
     console.log(1)
+    console.log('Доступ к текущему переводу из скрипта this.$t("greeting") ' + this.$t("greeting"))
 					
     console.log('\n------- Getters arguments ----- ')
     console.log('getters moduleA_item1 ' + this.moduleA_item1)		
@@ -34,7 +35,10 @@ export default {
       moduleB_item3: 'item3',
       moduleB_item4: 'item4',
       moduleB_moduleBGetter: 'moduleBGetter'
-    })
+    }),
+    translatedItem() {
+      return this.$t("greeting")
+    },
   },
   methods: {            
     ...mapActions('moduleB', {

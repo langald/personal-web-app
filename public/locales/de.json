@@ -1,4 +1,49 @@
 { 
-  "greeting": "Guten Tag",
-  "name": "Jimmy"
+  "translation": {
+    "greeting": "Guten Tag",
+    "name": "Jimmy",
+    "navbar" : {
+      "home": "Home",
+      "about": "Über mich",
+      "movielist": "Movies",
+      "favorited": "Favoriten"
+    },
+    "home_page" : {
+      "greeting": "Hello",
+      "name": "Ich bin Larissa Angald",
+      "profession": "Frontend Developer",
+      "skills_title": "Meine Fähigkeiten",
+      "skill_1": "HTML, CSS, JavaScript, jQuery",
+      "skill_2": "AJAX anfragen",
+      "skill_3": "REST API",
+      "skill_4": "Axios",
+      "skill_5": "ES5/6",
+      "skill_6": "Vue.js + Vuex + Router",
+      "skill_7": "Basic React + Redux" 
+    },
+    "about_page": {
+      "quote": "„Ich glaube, dass eine gut durchdachte Technologie jedes Problem lösen kann. <br> Und, vielleicht, rette die Welt. <br> Mindestens, machen sie es wenigstens schöner.“",
+      "item_1" : {
+        "title": "Kreativität",
+        "text": "Die Fähigkeit zu sehen Verbindungen und Beziehungen, wo andere nicht sind"
+      },
+      "item_2" : {
+        "title": "Strategie",
+        "text": "Zielplanung, Prioritätensetzung, erfolgreiche Umsetzung"
+      },
+      "item_3" : {
+        "title": "Technologie",
+        "text": "Der richtige Tech-Stack ist der Schlüssel zum Wachstum und zum Erfolg des Projekts"
+      }      
+    },
+    "movie_page": {
+      "title": "Titel",
+      "genre": "Genre",
+      "country": "Land",
+      "release_date": "Veröffentlichungsdatum",
+      "rating": "Bewertung",
+      "favorited": "Favoriten",
+      "see_also": "Siehe auch"
+    }     
+  } 
 }

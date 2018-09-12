@@ -8,10 +8,9 @@ import {i18n, loadLanguageAsync} from './common/i18n-setup.js'
 
 Vue.config.productionTip = false
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, from, next) => {  
   const lang = to.params.locale
-  //const lang = 'de'
-  loadLanguageAsync(lang).then(() => next())  
+  loadLanguageAsync(lang, to).then(() => next())
 })
 
 new Vue({
