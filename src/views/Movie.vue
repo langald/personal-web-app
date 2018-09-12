@@ -28,12 +28,12 @@
         </div>
         <div class="col-12 col-sm-6 movie-info">
           <div class="row">
-            <div class="col-5 movie-info__item-name">Название:</div>
+            <div class="col-5 movie-info__item-name">{{ $t('movie_page.title') }}:</div>
             <div class="col-7">{{movie.title}}</div>
           </div>
 
           <div class="row">
-            <div class="col-5 movie-info__item-name">Жанр:</div>
+            <div class="col-5 movie-info__item-name">{{ $t('movie_page.genre') }}:</div>
             <div class="col-7">
             <span v-for="(genre, index) in movie.genres" :key="genre.id">
               <span v-if="index">, </span>
@@ -43,7 +43,7 @@
           </div>
 
           <div class="row">
-            <div class="col-5 movie-info__item-name">Страна:</div>
+            <div class="col-5 movie-info__item-name">{{ $t('movie_page.country') }}:</div>
             <div class="col-7">
             <span v-for="(country, index) in movie.production_countries" :key="index">
               <span v-if="index">, </span>
@@ -53,17 +53,17 @@
           </div>
 
           <div class="row">
-            <div class="col-5 movie-info__item-name">Дата выхода:</div>
+            <div class="col-5 movie-info__item-name">{{ $t('movie_page.release_date') }}:</div>
             <div class="col-7">{{movie.release_date}}</div>
           </div>
 
           <div class="row">
-            <div class="col-5 movie-info__item-name">Рейтинг:</div>
+            <div class="col-5 movie-info__item-name">{{ $t('movie_page.rating') }}:</div>
             <div class="col-7">{{movie.vote_average}}</div>
           </div>
 
           <div class="row">
-            <div class="col-5 movie-info__item-name">Избранное:</div>
+            <div class="col-5 movie-info__item-name">{{ $t('movie_page.favorited') }}:</div>
             <div class="col-7">
             <div class="movie-info__favorite" @click="updateFavorited(movie)">
               <i class="far fa-bookmark" v-if="!movie.isFavorited"></i>
@@ -82,7 +82,7 @@
 
       <div class="row margin-top-20 movie-recommendations" v-if="recommendations.length">
         <div class="col-12">
-          <h3>Смотрите также</h3>
+          <h3>{{ $t('movie_page.see_also') }}</h3>
         </div>
 
         <movie-poster v-for="recomendedMovie in recommendationsList"

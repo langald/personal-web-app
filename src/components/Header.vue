@@ -25,10 +25,10 @@ export default {
   computed: {  
     navbarItems() {
       return [
-        {to: 'home', title: this.$t("navbar_home")}, 
-        {to: 'about', title: this.$t("navbar_about")},
-        {to: 'movielist', title: this.$t("navbar_movielist")},
-        {to: 'favorited', title: this.$t("navbar_favorited")}
+        {to: 'home', title: this.$t("navbar.home")}, 
+        {to: 'about', title: this.$t("navbar.about")},
+        {to: 'movielist', title: this.$t("navbar.movielist")},
+        {to: 'favorited', title: this.$t("navbar.favorited")}
       ]
     } 
   },

@@ -9,9 +9,9 @@
           </div>
         </div>
         <div class="col-12 col-md-8 top-section__title">
-          Hello!<br />
-          I'm Larissa Angald
-          <p class="top-section__subtitle">Frontend Developer</p>
+          {{ $t("home_page.greeting") }}!<br />
+          {{ $t("home_page.name") }}
+          <p class="top-section__subtitle"> {{ $t("home_page.profession") }}</p>
         </div>
       </div>   
     </div>   
@@ -27,15 +27,15 @@
         </div> 
 
         <div class="col-md-6 col-lg-4">
-          <h3 class="about-section__title"> My skills</h3>
+          <h3 class="about-section__title">  {{ $t("home_page.skills_title") }} </h3>
           <ul class="about-section__skills">
-            <li>HTML, CSS, JavaScript, jQuery</li>     
-            <li>AJAX requests</li>
-            <li>REST API</li>
-            <li>Axios</li>
-            <li>ES5/6</li>
-            <li>Vue.js + Vuex + Router</li>
-            <li>Basic React + Redux</li>
+            <li>{{ $t("home_page.skill_1") }}</li>     
+            <li>{{ $t("home_page.skill_2") }}</li>     
+            <li>{{ $t("home_page.skill_3") }}</li>     
+            <li>{{ $t("home_page.skill_4") }}</li>     
+            <li>{{ $t("home_page.skill_5") }}</li>     
+            <li>{{ $t("home_page.skill_6") }}</li>     
+            <li>{{ $t("home_page.skill_7") }}</li>
           </ul>
         </div>  
 

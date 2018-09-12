@@ -62,6 +62,10 @@ export default {
       inputSearchValue: ''
     }
   },		
+  beforeRouteUpdate (to, from, next) {   
+    this.getMovies({page: this.currentPage})
+    return next()
+  },
   mounted(){
     if(this.$route.params.search) {					
       this.$refs.searchField.$el.children[0].focus()				
