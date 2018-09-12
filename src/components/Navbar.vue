@@ -35,7 +35,7 @@ export default {
   },
   data() {
     return {
-      headerMenuShownBtn: window.innerWidth > 720      
+      headerMenuShownBtn: window.innerWidth >= 768      
     }
   },
   mounted () {
@@ -45,11 +45,13 @@ export default {
     window.removeEventListener('resize', this.handleResize);
   },    
   methods: {
-    toggleMenu() {      
-      this.headerMenuShownBtn = !this.headerMenuShownBtn      
+    toggleMenu() {   
+      if(window.innerWidth < 768) {
+        this.headerMenuShownBtn = !this.headerMenuShownBtn
+      }   
     },
     handleResize() {      
-      this.headerMenuShownBtn = window.innerWidth > 720     
+      this.headerMenuShownBtn = window.innerWidth >= 768     
     }
   } 
 }
@@ -116,7 +118,7 @@ export default {
     opacity: 1;   
 }
 
-@media only screen and (max-width: 720px) {
+@media only screen and (max-width: $md-screen) {
     .header-menu__item {
         display: block;       
     }

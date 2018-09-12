@@ -128,7 +128,7 @@ export default {
     }
 
 
-    @media only screen and (max-width: 720px) {
+    @media only screen and (max-width: $md-screen) {
         .localeSwitcher__menu {
             position: relative;
             top: 10px;
