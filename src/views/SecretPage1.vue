@@ -3,14 +3,26 @@
     <h1>This is SecretPage1</h1>  
     <p>{{moduleA_item1}}</p> 
     <p>{{$t("greeting")}} {{$t("name")}}</p> 
+    <ButtonSlider :msg="buttonMsg" @btnClick="onButtonSliderClick" />
   </div>
 </template>
 
 <script>
+import ButtonSlider from '@/components/ButtonSlider';
+
 import {mapGetters} from 'vuex';
 import {mapActions} from 'vuex';
 
 export default {
+  name: 'SecretPage1',
+  components: {   
+    ButtonSlider,
+  },
+  data() {
+    return {
+      buttonMsg: 'Button'
+    }
+  },
   created(){
     console.log(1)
     console.log('Доступ к текущему переводу из скрипта this.$t("greeting") ' + this.$t("greeting"))
@@ -46,7 +58,10 @@ export default {
     }),
     ...mapActions({
       rootAction: 'rootActionY'
-    })             
+    }),
+    onButtonSliderClick() {      
+      this.buttonMsg = 'You clicked!'
+    }             
   }
 }
 </script>
