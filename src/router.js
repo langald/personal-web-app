@@ -6,6 +6,7 @@ import MovieList from './views/MovieList.vue'
 import MovieListFavorited from './views/MovieListFavorited.vue'
 import Movie from './views/Movie.vue'
 import SecretPage1 from './views/SecretPage1.vue'
+import SecretPage2 from './views/SecretPage2.vue'
 import E404 from './views/E404.vue'
 import LocaleTemplate from './views/LocaleTemplate.vue'
 
@@ -42,11 +43,6 @@ export default new Router({
           component: About
         },
         {
-          path: 'secretpage1',
-          name: 'secretpage1',
-          component: SecretPage1
-        },
-        {
           path: 'movielist/:search?',
           name: 'movielist',
           component: MovieList
@@ -60,6 +56,16 @@ export default new Router({
           path: 'movie/:id',
           name: 'movie',
           component: Movie
+        },
+        {
+          path: 'secretpage1',
+          name: 'secretpage1',
+          component: SecretPage1
+        },
+        {
+          path: 'secretpage2',
+          name: 'secretpage2',
+          component: SecretPage2
         },
         {
           path: '*',
