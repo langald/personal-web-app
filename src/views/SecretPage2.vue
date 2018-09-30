@@ -36,6 +36,13 @@
       <ScrollMagicExample />
     </div>
 
+    <div id="jqueryTest" ref="jqueryTestRef" @click="addSomeText">
+      6. jquery test
+      <br>
+      Click to add some text
+      
+    </div>
+
     <br>
     <br>
     <br>
@@ -59,6 +66,8 @@ import SlideDownCSS from '@/components/featureExamples/SlideDownCSS.vue'
 import GSAPExample from '@/components/featureExamples/GSAPExample.vue'
 import ScrollMagicExample from '@/components/featureExamples/ScrollMagicExample.vue'
 
+import $ from 'jquery'
+
 export default {
   name: 'SecretPage2',
   components: { 
@@ -77,6 +86,11 @@ export default {
     }
   },
   methods: {
+    addSomeText() {
+      $('#jqueryTest').append('<br> some new text')
+      // можно и так
+      //$(this.$refs.jqueryTestRef).append('<br> some new text')
+    }
    
   }
 }

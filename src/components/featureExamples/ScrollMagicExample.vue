@@ -30,9 +30,9 @@ export default {
     var containerScene = new ScrollMagic.Scene({
       triggerElement: '#triggerContainer'
     })
-    .setTween(blockTween)
-    .addIndicators()
-    .addTo(controller);
+      .setTween(blockTween)
+      .addIndicators()
+      .addTo(controller);
       
   },
   data() {

@@ -18,7 +18,7 @@ export default {
   name: 'ParallaxSimple',
   mounted() {
     var scene = document.getElementById('scene');
-	  var parallax = new Parallax(scene);
+    var parallax = new Parallax(scene);
   },
 }
 </script>
