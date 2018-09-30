@@ -23,6 +23,19 @@
       <SlideDownCSS />
     </div>
 
+   
+    <br>
+    <div>
+      4. GreenSock Animations Platform (GSAP)
+      <GSAPExample />
+    </div>
+
+    <br>
+    <div>
+      5. ScrollMagic
+      <ScrollMagicExample />
+    </div>
+
     <br>
     <br>
     <br>
@@ -43,13 +56,17 @@
 import ScrollDrawingSvg from '@/components/featureExamples/ScrollDrawingSvg.vue'
 import ParallaxSimple from '@/components/featureExamples/ParallaxSimple.vue'
 import SlideDownCSS from '@/components/featureExamples/SlideDownCSS.vue'
+import GSAPExample from '@/components/featureExamples/GSAPExample.vue'
+import ScrollMagicExample from '@/components/featureExamples/ScrollMagicExample.vue'
 
 export default {
   name: 'SecretPage2',
   components: { 
     ScrollDrawingSvg,
     ParallaxSimple,  
-    SlideDownCSS  
+    SlideDownCSS,  
+    GSAPExample,  
+    ScrollMagicExample  
   },
   mounted() {
       
