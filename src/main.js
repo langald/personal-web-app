@@ -1,21 +1,21 @@
-import '@babel/polyfill'
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
+import "@babel/polyfill";
+import Vue from "vue";
+import App from "./App.vue";
+import router from "./router";
+import store from "./store";
 
-import {i18n, loadLanguageAsync} from './common/i18n-setup.js'
+import { i18n, loadLanguageAsync } from "./common/i18n-setup.js";
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
-router.beforeEach((to, from, next) => {  
-  const lang = to.params.locale
-  loadLanguageAsync(lang, to).then(() => next())
-})
+router.beforeEach((to, from, next) => {
+  const lang = to.params.locale;
+  loadLanguageAsync(lang, to).then(() => next());
+});
 
 new Vue({
   router,
   store,
-  i18n, /** for reading {{$t("somemessage")}} from components*/
-  render: h => h(App)
-}).$mount('#app')
+  i18n /** for reading {{$t("somemessage")}} from components*/,
+  render: h => h(App),
+}).$mount("#app");
