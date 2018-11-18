@@ -47,8 +47,14 @@
     <div>
       6. Download file test
       <br>
-      <button @click="downloadFile('certificate-4231.pdf')" >Download file 1</button> <br>
-      <button @click="downloadFile('certificate-4232.pdf')" >Download file 2</button>
+      <button @click="downloadFile('certificate-4231.pdf')" >Download file 1</button><br>
+      <button @click="downloadFile('certificate-4232.pdf')" >Download file 2</button><br>
+      
+      <a target="_blank" :href="require('@/assets/myfiles/conformity-declaration.PDF')">PDF Doc 1</a><br>
+      
+      <!-- так не работает
+      <a target="_blank" :href="`${baseUrl}pdf.pdf`">PDF Doc 2 </a><br>
+      -->
       
     </div>
 
@@ -92,7 +98,7 @@ export default {
   },
   data() {
     return {
-      
+      baseUrl: process.env.BASE_URL
     }
   },
   methods: {

@@ -24,5 +24,14 @@ module.exports = {
         ),
       ],
     }
+  },
+  chainWebpack: config => {
+    // file-loader
+    config.module
+      .rule('graphql')
+      .test(/\.pdf|PDF$/)
+      .use('file-loader')
+        .loader('file-loader')
+        .end()
   }
 }
