@@ -44,6 +44,15 @@
     </div>
 
     <br>
+    <div>
+      6. Download file test
+      <br>
+      <button @click="downloadFile('certificate-4231.pdf')" >Download file 1</button> <br>
+      <button @click="downloadFile('certificate-4232.pdf')" >Download file 2</button>
+      
+    </div>
+
+    <br>
     <br>
     <br>
     <br>
@@ -67,6 +76,7 @@ import GSAPExample from '@/components/featureExamples/GSAPExample.vue'
 import ScrollMagicExample from '@/components/featureExamples/ScrollMagicExample.vue'
 
 import $ from 'jquery'
+import axios from 'axios'
 
 export default {
   name: 'SecretPage2',
@@ -90,8 +100,25 @@ export default {
       $('#jqueryTest').append('<br> some new text')
       // можно и так
       //$(this.$refs.jqueryTestRef).append('<br> some new text')
-    }
-   
+    },
+    downloadFile(filename) {
+      axios({
+        url: `/files/${filename}`,
+        method: "GET",
+        responseType: "blob", // important
+      }).then(response => {
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", filename);
+        document.body.appendChild(link);
+        link.click();
+        setTimeout(function() {
+          link.remove();
+          window.URL.revokeObjectURL(url);
+        }, 1000);
+      });
+    },
   }
 }
 </script>
