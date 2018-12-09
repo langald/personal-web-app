@@ -59,6 +59,12 @@
     </div>
 
     <br>
+    <div>
+      7. Masked Input test
+      <br>
+      <masked-input mask="\+\1 (111) 1111-11" placeholder="Phone" :value="maskedInputVal"
+        @input="onMaskedInputInput(arguments[0])" />
+    </div>
     <br>
     <br>
     <br>
@@ -81,6 +87,8 @@ import SlideDownCSS from '@/components/featureExamples/SlideDownCSS.vue'
 import GSAPExample from '@/components/featureExamples/GSAPExample.vue'
 import ScrollMagicExample from '@/components/featureExamples/ScrollMagicExample.vue'
 
+import MaskedInput from 'vue-masked-input' 
+
 import $ from 'jquery'
 import axios from 'axios'
 
@@ -91,14 +99,16 @@ export default {
     ParallaxSimple,  
     SlideDownCSS,  
     GSAPExample,  
-    ScrollMagicExample  
+    ScrollMagicExample,
+    MaskedInput
   },
   mounted() {
       
   },
   data() {
     return {
-      baseUrl: process.env.BASE_URL
+      baseUrl: process.env.BASE_URL,
+      maskedInputVal: ''
     }
   },
   methods: {
@@ -125,6 +135,9 @@ export default {
         }, 1000);
       });
     },
+    onMaskedInputInput(val) {
+      console.log(val);
+    }
   }
 }
 </script>
