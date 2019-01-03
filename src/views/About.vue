@@ -42,6 +42,22 @@ export default {
   components: {			
 				
   },
+  metaInfo: {
+    title: 'Larissa Angald About page',
+    titleTemplate: '%s | My Awesome Webapp',
+    meta: [
+      {
+        'name': 'keywords',
+        'content': 'Larissa Angald, Лариса Ангальд, Larissa Angald About',
+        'vmid': 'keywords'
+      },
+      {
+        'property': 'og:title',
+        'content': 'Larissa Angald About page',
+        'vmid': 'og:title'
+      }
+    ]
+  },
   data () {
     return {
 			

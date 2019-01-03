@@ -29,6 +29,24 @@ export default {
     'app-header': Header,
     'app-footer': Footer
   },
+  metaInfo() { 
+    return {
+      title: 'Larissa Angald Main page',
+      titleTemplate: '%s | My Awesome Webapp',
+      meta: [
+        {
+          'name': 'keywords',
+          'content': 'Larissa Angald, Лариса Ангальд, Лариса Ангальд main page',
+          'vmid': 'keywords'
+        },
+        {
+          'property': 'og:title',
+          'content': 'Larissa Angald main page',
+          'vmid': 'og:title'
+        }
+      ]
+    }
+  },
   data() {
     return {
       preloader: true

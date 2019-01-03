@@ -140,33 +140,33 @@ export default {
           month = this.data[1].list[ciList[1]];
         }
         switch (month) {
-          case 2:
-            let selectedYear = this.data[0].list[ciList[0]]; // month
-            if (gIndex === 0) {
-              // year
-              selectedYear = this.data[0].list[iIndex];
-            }
-            let isLeapYear = false;
-            if (this.isLeapYear(selectedYear)) {
-              isLeapYear = true;
-            }
-            monthCount = 28;
-            currentIndex = 14;
-            if (isLeapYear) {
-              monthCount = 29;
-              currentIndex = 15;
-            }
-            break;
-          case 4:
-          case 6:
-          case 9:
-          case 11:
-            monthCount = 30;
+        case 2:
+          let selectedYear = this.data[0].list[ciList[0]]; // month
+          if (gIndex === 0) {
+            // year
+            selectedYear = this.data[0].list[iIndex];
+          }
+          let isLeapYear = false;
+          if (this.isLeapYear(selectedYear)) {
+            isLeapYear = true;
+          }
+          monthCount = 28;
+          currentIndex = 14;
+          if (isLeapYear) {
+            monthCount = 29;
             currentIndex = 15;
-            break;
-          default:
-            monthCount = 31;
-            currentIndex = 16;
+          }
+          break;
+        case 4:
+        case 6:
+        case 9:
+        case 11:
+          monthCount = 30;
+          currentIndex = 15;
+          break;
+        default:
+          monthCount = 31;
+          currentIndex = 16;
         }
         const list = [...Array(monthCount)].map((d, i) => i + 1);
         this.$refs.smoothPicker.setGroupData(2, {

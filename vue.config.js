@@ -31,14 +31,14 @@ module.exports = {
       .rule('graphql')
       .test(/\.pdf|PDF$/)
       .use('file-loader')
-        .loader('file-loader')
-        .tap(options => {
-          // modify the options...
-          return {
-            name: '[path][name].[ext]',
-            outputPath: 'filesFromWebpack/'
-          }
-        })
-        .end()
+      .loader('file-loader')
+      .tap(options => {
+        // modify the options...
+        return {
+          name: '[path][name].[ext]',
+          outputPath: 'filesFromWebpack/'
+        }
+      })
+      .end()
   }
 }

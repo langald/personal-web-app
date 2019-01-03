@@ -3,8 +3,12 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import Meta from 'vue-meta';
 
 import { i18n, loadLanguageAsync } from "./common/i18n-setup.js";
+
+//vue-meta are applied asynchronously, that take some time
+Vue.use(Meta);
 
 Vue.config.productionTip = false;
 
