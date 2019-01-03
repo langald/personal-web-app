@@ -1,0 +1,4 @@
+User-agent: *
+Sitemap: https://langald.github.io/sitemap.xml
+Host: langald.github.io
+Disallow: /en/secretPage1
