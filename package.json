@@ -15,6 +15,7 @@
     "imports-loader": "^0.8.0",
     "jquery": "^3.3.1",
     "parallax-js": "^3.1.0",
+    "particles.js": "^2.0.0",
     "scrollmagic": "^2.0.5",
     "svg-country-flags": "^1.2.6",
     "vue": "^2.5.16",
@@ -27,11 +28,11 @@
     "vuex": "^3.0.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.0-rc.5",
-    "@vue/cli-plugin-eslint": "^3.0.0-rc.5",
-    "@vue/cli-service": "^3.0.0-rc.5",
+    "@vue/cli-plugin-babel": "^3.6.0",
+    "@vue/cli-plugin-eslint": "^3.6.0",
+    "@vue/cli-service": "^3.6.0",
     "file-loader": "^2.0.0",
-    "node-sass": "^4.9.0",
+    "node-sass": "^4.11.0",
     "prerender-spa-plugin": "^3.4.0",
     "sass-loader": "^7.0.1",
     "vue-template-compiler": "^2.5.16"

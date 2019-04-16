@@ -65,7 +65,14 @@
       <masked-input mask="\+\1 (111) 1111-11" placeholder="Phone" :value="maskedInputVal"
         @input="onMaskedInputInput(arguments[0])" />
     </div>
+
     <br>
+    <div>
+      8. Particle.js
+      <particle-example />
+    </div>
+
+
     <br>
     <br>
     <br>
@@ -86,6 +93,7 @@ import ParallaxSimple from '@/components/featureExamples/ParallaxSimple.vue'
 import SlideDownCSS from '@/components/featureExamples/SlideDownCSS.vue'
 import GSAPExample from '@/components/featureExamples/GSAPExample.vue'
 import ScrollMagicExample from '@/components/featureExamples/ScrollMagicExample.vue'
+import ParticleExample from '@/components/featureExamples/ParticleExample.vue'
 
 import MaskedInput from 'vue-masked-input' 
 
@@ -100,7 +108,8 @@ export default {
     SlideDownCSS,  
     GSAPExample,  
     ScrollMagicExample,
-    MaskedInput
+    MaskedInput,
+    ParticleExample
   },
   mounted() {
       
