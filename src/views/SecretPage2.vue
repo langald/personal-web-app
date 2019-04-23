@@ -72,6 +72,12 @@
       <particle-example />
     </div>
 
+    <br>
+    <div>
+      9. ThreeJS Canvas Particle Waves
+      <waves-example />
+    </div>
+
 
     <br>
     <br>
@@ -94,6 +100,7 @@ import SlideDownCSS from '@/components/featureExamples/SlideDownCSS.vue'
 import GSAPExample from '@/components/featureExamples/GSAPExample.vue'
 import ScrollMagicExample from '@/components/featureExamples/ScrollMagicExample.vue'
 import ParticleExample from '@/components/featureExamples/ParticleExample.vue'
+import WavesExample from '@/components/featureExamples/WavesExample.vue'
 
 import MaskedInput from 'vue-masked-input' 
 
@@ -109,7 +116,8 @@ export default {
     GSAPExample,  
     ScrollMagicExample,
     MaskedInput,
-    ParticleExample
+    ParticleExample,
+    WavesExample
   },
   mounted() {
       
