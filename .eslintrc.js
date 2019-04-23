@@ -15,6 +15,7 @@ module.exports = {
     'no-unused-vars': 'off',
     'no-undef': 'off',
     'no-case-declarations': 'off',
+    'no-console': 'off',
   },
   parserOptions: {
     parser: 'babel-eslint'

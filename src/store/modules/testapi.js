@@ -18,7 +18,7 @@ export default {
   actions: {
     fetchArticles(store, payload) {
       //let url = 'http://test-laravel-app.test/api/testapi';
-      let url = 'http://pixy.kz/api/testapi';
+      let url = 'https://pixy.kz/api/testapi';
       ApiService.get(url)
         .then(({ data }) => {
           //console.log(data)
