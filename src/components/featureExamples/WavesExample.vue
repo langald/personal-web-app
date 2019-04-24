@@ -10,7 +10,7 @@
 
 				vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
 
-				gl_PointSize = scale * ( 100.0 / - mvPosition.z );
+				gl_PointSize = scale * ( 300.0 / - mvPosition.z );
 
 				gl_Position = projectionMatrix * mvPosition;
 
@@ -51,7 +51,7 @@ export default {
     // if ( WEBGL.isWebGLAvailable() === false ) {
     //   document.body.appendChild( WEBGL.getWebGLErrorMessage() );
     // }
-    var SEPARATION = 100, AMOUNTX = 50, AMOUNTY = 50;
+    var SEPARATION = 100, AMOUNTX = 50, AMOUNTY = 50, MAXSIZE=3, WAVESIZE = 30; 
     var container, stats;
     var camera, scene, renderer;
     var particles, count = 0;
@@ -62,9 +62,10 @@ export default {
     animate();
     function init() {
       container = document.getElementById( 'waves' );
-      camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
-      camera.position.z = 900;
+      camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 1, 10000 );
+      camera.position.z = 1000;
       scene = new THREE.Scene();
+      scene.rotation.x = 0.2;
       //
       var numParticles = AMOUNTX * AMOUNTY;
       var positions = new Float32Array( numParticles * 3 );
@@ -147,10 +148,10 @@ export default {
       var i = 0, j = 0;
       for ( var ix = 0; ix < AMOUNTX; ix ++ ) {
         for ( var iy = 0; iy < AMOUNTY; iy ++ ) {
-          positions[ i + 1 ] = ( Math.sin( ( ix + count ) * 0.3 ) * 50 ) +
-										( Math.sin( ( iy + count ) * 0.5 ) * 50 );
-          scales[ j ] = ( Math.sin( ( ix + count ) * 0.3 ) + 1 ) * 8 +
-										( Math.sin( ( iy + count ) * 0.5 ) + 1 ) * 8;
+          positions[ i + 1 ] = ( Math.sin( ( ix + count ) * 0.3 ) * WAVESIZE ) +
+										( Math.sin( ( iy + count ) * 0.5 ) * WAVESIZE );
+          scales[ j ] = ( Math.sin( ( ix + count ) * 0.3 ) + 1 ) * MAXSIZE +
+										( Math.sin( ( iy + count ) * 0.5 ) + 1 ) * MAXSIZE;
           i += 3;
           j ++;
         }
