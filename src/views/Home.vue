@@ -36,6 +36,10 @@
             <li>{{ $t("home_page.skill_5") }}</li>     
             <li>{{ $t("home_page.skill_6") }}</li>     
             <li>{{ $t("home_page.skill_7") }}</li>
+            <li>{{ $t("home_page.skill_8") }}</li>
+            <li>{{ $t("home_page.skill_9") }}</li>
+            <li>{{ $t("home_page.skill_10") }}</li>
+            <li>{{ $t("home_page.skill_11") }}</li>
           </ul>
         </div>  
 
@@ -89,10 +93,15 @@ export default {
   margin: 20px auto 10px;
 }
 .top-section__title {
-  font-size: 6rem;
-  line-height: 1;
+  font-size: 3rem;
+  line-height: 1,2;
   color: $white-color;
   text-align: center;
+}
+@media only screen and(min-width: 768px) {
+  .top-section__title {
+    font-size: 6rem;
+  }
 }
 .top-section__subtitle {
   font-size: 2rem;

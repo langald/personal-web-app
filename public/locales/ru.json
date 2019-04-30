@@ -10,16 +10,20 @@
     },
     "home_page" : {
       "greeting": "Привет",
-      "name": "Меня зовут Лариса Ангальд",
+      "name": "Я Лариса Ангальд",
       "profession": "Frontend Developer",
       "skills_title": "Мои навыки",
-      "skill_1": "HTML, CSS, JavaScript, jQuery",
-      "skill_2": "AJAX запросы",
-      "skill_3": "REST API",
-      "skill_4": "Axios",
-      "skill_5": "ES5/6",
-      "skill_6": "Vue.js + Vuex + Router",
-      "skill_7": "Basic React + Redux" 
+      "skill_1": "SPA Vue.js + Vuex + Router",
+      "skill_2": "SSR Nuxt.js",
+      "skill_3": "HTML, CSS, JavaScript, jQuery",
+      "skill_4": "AJAX requests",
+      "skill_5": "REST API",
+      "skill_6": "Axios",
+      "skill_7": "ES5/6",
+      "skill_8": "Sass/Scss",
+      "skill_9": "Адаптивная, кроссбраузерная верстка, Bootstrap 4, Flexbox",
+      "skill_10": "Основы React + Redux",
+      "skill_11": "Основы Laravel"  
     },
     "about_page": {
       "quote": "„Я верю, что продуманная технология может решить любую проблему. <br> И, возможно, спаси мир. <br> По крайней мере, сделать его более прекрасным.“",
