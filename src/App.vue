@@ -21,6 +21,8 @@ import AOS from 'aos'
 import Preloader from '@/components/Preloader.vue'
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
+import Cookie from 'js-cookie'
+import axios from 'axios'
 
 export default {
   name: 'App',
@@ -57,6 +59,19 @@ export default {
     setTimeout(() => {
       this.preloader = false
     }, 500);
+
+    this.checkCookie()
+  },
+  methods: {
+    checkCookie() {
+     
+      const token = Cookie.get('token')
+      const tokenType = Cookie.get('tokenType')
+      axios.defaults.headers.common['Authorization'] = tokenType  + ' ' + token;
+
+      // console.log(token)
+      // console.log(tokenType)
+    }
   }
 }
 </script>

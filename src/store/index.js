@@ -6,6 +6,7 @@ import moduleB from './modules/moduleB'
 import movieList from './modules/movieList'
 import movie from './modules/movie'
 import testapi from './modules/testapi'
+import auth from './modules/auth'
 
 Vue.use(Vuex)
 
@@ -63,7 +64,8 @@ export default new Vuex.Store({
     moduleB,
     movieList,
     movie,
-    testapi
+    testapi,
+    auth
   },
   strict: process.env.NODE_ENV !== 'production'
 })
