@@ -22,7 +22,7 @@ import Preloader from '@/components/Preloader.vue'
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
 import Cookie from 'js-cookie'
-import axios from 'axios'
+import {axiosBack} from '@/common/api.service'
 
 export default {
   name: 'App',
@@ -67,10 +67,10 @@ export default {
      
       const token = Cookie.get('token')
       const tokenType = Cookie.get('tokenType')
-      axios.defaults.headers.common['Authorization'] = tokenType  + ' ' + token;
-
-      // console.log(token)
-      // console.log(tokenType)
+      if (token && tokenType) {
+        axiosBack.defaults.headers.common['Authorization'] = tokenType  + ' ' + token;
+      }
+    
     }
   }
 }

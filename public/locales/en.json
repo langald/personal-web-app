@@ -6,7 +6,8 @@
       "home": "Home",
       "about": "About",
       "movielist": "Movies",
-      "favorited": "Favorited"
+      "favorited": "Favorited",
+      "logout": "Logout"
     },
     "home_page" : {
       "greeting": "Hello",

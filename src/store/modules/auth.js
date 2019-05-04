@@ -1,5 +1,4 @@
-import ApiService  from '@/common/api.service'
-import axios from 'axios'
+import {axiosBack} from '@/common/api.service'
 import moment from 'moment'
 
 export default {
@@ -51,11 +50,9 @@ export default {
     login(store, payload) {
       store.commit('setError', '')
       store.commit('setLoading', true)
-      let url = 'http://test-laravel-app.test/api/user/login';
-      //let url = 'https://pixy.kz/api/user/login';
-
-
-      return ApiService.post(url, payload)
+      let url = 'user/login';
+      
+      return axiosBack.post(url, payload)
         .then((response) => {
           //console.log(response.data)
           let expiredDate = moment(response.data.data.expires_at.slice(0, 10), 'YYYY-MM-DD')
@@ -64,7 +61,7 @@ export default {
           store.commit('setToken', response.data.data.access_token)
           store.commit('setTokenType', response.data.data.token_type)
           store.commit('setExpiredDays', expiredDays)
-          axios.defaults.headers.common['Authorization'] = response.data.data.token_type  + ' ' + response.data.data.access_token;
+          axiosBack.defaults.headers.common['Authorization'] = response.data.data.token_type  + ' ' + response.data.data.access_token;
 
           store.commit('setLoading', false)
         })
@@ -73,9 +70,35 @@ export default {
           store.commit('setError', e.message)
           store.commit('setLoading', false)
         })
-
-      
+    },
+    logout(store, payload) {
+      store.commit('setLoading', true)
+      let url = 'user/logout';
      
+      return axiosBack.get(url)
+        .then((response) => {
+          console.log(response.data)
+
+          //console.log(111)
+          
+          // store.commit('setToken', '')
+          // store.commit('setTokenType', '')
+          // store.commit('setExpiredDays', '')
+          // axiosBack.defaults.headers.common['Authorization'] = '';
+
+          store.commit('setLoading', false)
+        })
+        .catch(e => {
+          console.log(e.message)
+          store.commit('setLoading', false)
+        })
+        .then(() => {
+          //console.log(222)
+          store.commit('setToken', '')
+          store.commit('setTokenType', '')
+          store.commit('setExpiredDays', '')
+          axiosBack.defaults.headers.common['Authorization'] = '';
+        })
     },
     
   }

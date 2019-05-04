@@ -37,6 +37,14 @@ const ApiService = {
       .catch(error =>  errorHandler(error, url)), 
 }
 
+export const axiosBack = axios.create({
+  baseURL: 'http://test-laravel-app.test/api/',
+  //trick to avoid axios v0.18.0 bug  https://github.com/axios/axios/issues/1522
+  headers: {
+    common: {},
+  },
+});
+
 export default ApiService
 
 function constructMovieFullUrl(url, search = '') {

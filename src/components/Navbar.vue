@@ -14,6 +14,9 @@
                 >
                 <router-link :to="{name: item.to, params: {locale: $i18n.locale}}" >{{item.title}}</router-link>
             </li> 
+            <li class="header-menu__item" v-if="getToken">            
+                <a href=""  @click.prevent="onLogout">{{ $t("navbar.logout") }}</a>            
+            </li>               
             <li class="header-menu__item"
                 @click="toggleMenu()">            
                 <locale-switcher />            
@@ -24,6 +27,8 @@
 
 <script>
 import LocaleSwitcher from '@/components/LocaleSwitcher.vue'
+import Cookie from 'js-cookie'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Navbar',
@@ -38,6 +43,9 @@ export default {
       headerMenuShownBtn: window.innerWidth >= 768      
     }
   },
+  computed: {
+    ...mapGetters('auth', ['getToken'])
+  },
   mounted () {
     window.addEventListener('resize', this.handleResize);
   },
@@ -45,6 +53,7 @@ export default {
     window.removeEventListener('resize', this.handleResize);
   },    
   methods: {
+    ...mapActions('auth', ['logout']),
     toggleMenu() {   
       if(window.innerWidth < 768) {
         this.headerMenuShownBtn = !this.headerMenuShownBtn
@@ -52,6 +61,11 @@ export default {
     },
     handleResize() {      
       this.headerMenuShownBtn = window.innerWidth >= 768     
+    },
+    onLogout() {
+      this.logout()
+      Cookie.remove('token');
+      Cookie.remove('tokenType');
     }
   } 
 }

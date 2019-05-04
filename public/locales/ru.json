@@ -6,7 +6,8 @@
       "home": "Главная",
       "about": "О себе",
       "movielist": "Лента",
-      "favorited": "Избранное"
+      "favorited": "Избранное",
+      "logout": "Выйти"
     },
     "home_page" : {
       "greeting": "Привет",

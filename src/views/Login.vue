@@ -44,9 +44,7 @@ export default {
         password: this.password
       })
 
-      
-
-      console.log('--------')
+      //console.log('--------')
 
       if (!this.getError) {
         
@@ -57,7 +55,7 @@ export default {
           expires: this.getExpiredDays
         })
 
-        //this.$router.push(this.getRedirectUrlProfile)
+        this.$router.push({name: 'secretpage3'})
       }
     },
     

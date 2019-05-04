@@ -1,4 +1,4 @@
-import ApiService  from '@/common/api.service'
+import {axiosBack}  from '@/common/api.service'
 
 export default {
   namespaced: true,
@@ -24,26 +24,28 @@ export default {
   },
   actions: {
     fetchArticles(store, payload) {
-      let url = 'http://test-laravel-app.test/api/testapi';
+      let url = 'testapi';
       //let url = 'https://pixy.kz/api/testapi';
-      ApiService.get(url)
+      axiosBack.get(url)
         .then(({ data }) => {
           //console.log(data)
     
           store.commit('setArticles', data.data)
         })
+        .catch(e => console.log(e.message))
     },
     fetchArticle(store, payload) {
       store.commit('setArticle', {})
 
-      let url = 'http://test-laravel-app.test/api/testapi';
+      let url = 'testapi';
       //let url = 'https://pixy.kz/api/testapi';
-      ApiService.get(url + '/' + payload.id)
+      axiosBack.get(url + '/' + payload.id)
         .then(({ data }) => {
           //console.log(data)
     
           store.commit('setArticle', data)
         })
+        .catch(e => console.log(e.message))
     }
   }
 }
