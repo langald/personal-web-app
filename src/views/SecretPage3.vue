@@ -8,6 +8,9 @@
     </ul>
 
     <br>
+    <articles-pagination :pagination="getPagination" />
+
+    <br>
     <div>
       <h4>Some article</h4>
       <div v-text="getArticle"></div>
@@ -18,16 +21,31 @@
 </template>
 
 <script>
+import ArticlesPagination from '@/components/ArticlesPagination'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: "secretpage3",
-  components: {},
+  components: { ArticlesPagination },
+  data() {
+    return {
+      page: this.$route.query.page || 1
+    }
+  },
   computed: {
-    ...mapGetters('testapi', ['getArticles', 'getArticle'])
+    ...mapGetters('testapi', ['getArticles', 'getPagination', 'getArticle']),
+  },
+  beforeRouteUpdate (to, from, next) {
+    this.page = to.query.page
+    this.fetchArticles({
+      page: this.page
+    })
+    next()
   },
   mounted() {
-    this.fetchArticles()
+    this.fetchArticles({
+      page: this.page
+    })
   },
   methods: {
     ...mapActions('testapi', ['fetchArticles', 'fetchArticle'])
