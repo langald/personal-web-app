@@ -24,7 +24,8 @@
       "skill_8": "Sass/Scss",
       "skill_9": "Adaptives, browserübergreifendes layout, Bootstrap 4, Flexbox",
       "skill_10": "Basic React + Redux",
-      "skill_11": "Basic Laravel"  
+      "skill_11": "Basic Laravel",
+      "skill_12": "Unit testing: Jest"    
     },
     "about_page": {
       "quote": "„Ich glaube, dass eine gut durchdachte Technologie jedes Problem lösen kann. <br> Und, vielleicht, rette die Welt. <br> Mindestens, machen sie es wenigstens schöner.“",

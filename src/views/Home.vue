@@ -36,6 +36,7 @@
             <li>{{ $t("home_page.skill_5") }}</li>     
             <li>{{ $t("home_page.skill_6") }}</li>     
             <li>{{ $t("home_page.skill_7") }}</li>
+            <li>{{ $t("home_page.skill_12") }}</li>
             <li>{{ $t("home_page.skill_8") }}</li>
             <li>{{ $t("home_page.skill_9") }}</li>
             <li>{{ $t("home_page.skill_10") }}</li>

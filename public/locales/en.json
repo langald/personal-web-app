@@ -24,7 +24,8 @@
       "skill_8": "Sass/Scss",
       "skill_9": "Adaptive, cross-browser layout, Bootstrap 4, Flexbox",
       "skill_10": "Basic React + Redux",    
-      "skill_11": "Basic Laravel"   
+      "skill_11": "Basic Laravel",
+      "skill_12": "Unit testing: Jest"     
     },
     "about_page": {
       "quote": "„I believe that thoughtful technology can solve any problem. <br> And maybe save the world. <br> At least make it more awesome.“",
