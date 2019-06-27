@@ -4,16 +4,19 @@
     <div class="header1-section">
       <custom-select />
     </div>
-    <div class="header1-section">Search block</div>
+    <div class="header1-section">
+      <search-input />
+    </div>
   </div>
 </template>
 
 <script>
 import CustomSelect from '@/components/featureExamples/CustomSelect.vue'
+import SearchInput from '@/components/featureExamples/SearchInput.vue'
 
 export default {
   name: 'Header1',
-  components: { CustomSelect }
+  components: { CustomSelect, SearchInput }
 }
 </script>
 
