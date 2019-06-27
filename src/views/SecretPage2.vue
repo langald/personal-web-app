@@ -78,6 +78,12 @@
       <waves-example />
     </div>
 
+    <br>
+    <div>
+      10. Header1
+      <header1 />
+    </div>
+
 
     <br>
     <br>
@@ -101,6 +107,7 @@ import GSAPExample from '@/components/featureExamples/GSAPExample.vue'
 import ScrollMagicExample from '@/components/featureExamples/ScrollMagicExample.vue'
 import ParticleExample from '@/components/featureExamples/ParticleExample.vue'
 import WavesExample from '@/components/featureExamples/WavesExample.vue'
+import Header1 from '@/components/featureComponents/Header1.vue'
 
 import MaskedInput from 'vue-masked-input' 
 
@@ -117,7 +124,8 @@ export default {
     ScrollMagicExample,
     MaskedInput,
     ParticleExample,
-    WavesExample
+    WavesExample,
+    Header1
   },
   mounted() {
       

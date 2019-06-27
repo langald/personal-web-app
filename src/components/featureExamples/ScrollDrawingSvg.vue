@@ -55,5 +55,6 @@ export default {
   width: 400px;
   height: 210px;
   margin-left:-50px;
+  opacity: 0.3;
 }
 </style>
