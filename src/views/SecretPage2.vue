@@ -84,6 +84,12 @@
       <header1 />
     </div>
 
+    <br>
+    <div>
+      10. Preloader1
+      <preloader1 />
+    </div>
+
 
     <br>
     <br>
@@ -108,6 +114,7 @@ import ScrollMagicExample from '@/components/featureExamples/ScrollMagicExample.
 import ParticleExample from '@/components/featureExamples/ParticleExample.vue'
 import WavesExample from '@/components/featureExamples/WavesExample.vue'
 import Header1 from '@/components/featureComponents/Header1.vue'
+import Preloader1 from '@/components/featureExamples/Preloader1.vue'
 
 import MaskedInput from 'vue-masked-input' 
 
@@ -125,7 +132,8 @@ export default {
     MaskedInput,
     ParticleExample,
     WavesExample,
-    Header1
+    Header1,
+    Preloader1
   },
   mounted() {
       
