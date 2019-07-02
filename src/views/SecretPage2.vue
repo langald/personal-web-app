@@ -86,8 +86,14 @@
 
     <br>
     <div>
-      10. Preloader1
+      11. Preloader1
       <preloader1 />
+    </div>
+
+    <br>
+    <div>
+      12. Radial progress bar
+      <radial-progress-bar />
     </div>
 
 
@@ -115,6 +121,7 @@ import ParticleExample from '@/components/featureExamples/ParticleExample.vue'
 import WavesExample from '@/components/featureExamples/WavesExample.vue'
 import Header1 from '@/components/featureComponents/Header1.vue'
 import Preloader1 from '@/components/featureExamples/Preloader1.vue'
+import RadialProgressBar from '@/components/featureExamples/RadialProgressBar.vue'
 
 import MaskedInput from 'vue-masked-input' 
 
@@ -133,7 +140,8 @@ export default {
     ParticleExample,
     WavesExample,
     Header1,
-    Preloader1
+    Preloader1,
+    RadialProgressBar
   },
   mounted() {
       
