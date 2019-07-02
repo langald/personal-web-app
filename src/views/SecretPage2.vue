@@ -96,6 +96,12 @@
       <radial-progress-bar />
     </div>
 
+    <br>
+    <div>
+      13. Progress Ring
+      <progress-ring :radius="80" :progress="75" :stroke="10" />
+    </div>
+
 
     <br>
     <br>
@@ -122,6 +128,7 @@ import WavesExample from '@/components/featureExamples/WavesExample.vue'
 import Header1 from '@/components/featureComponents/Header1.vue'
 import Preloader1 from '@/components/featureExamples/Preloader1.vue'
 import RadialProgressBar from '@/components/featureExamples/RadialProgressBar.vue'
+import ProgressRing from '@/components/featureExamples/ProgressRing.vue'
 
 import MaskedInput from 'vue-masked-input' 
 
@@ -141,7 +148,8 @@ export default {
     WavesExample,
     Header1,
     Preloader1,
-    RadialProgressBar
+    RadialProgressBar,
+    ProgressRing
   },
   mounted() {
       
