@@ -200,6 +200,7 @@ $label-font-size-redo: $default-size * 4;
       left: 0;
       position: absolute;
       top: 0;
+      transition: transform 0.5s;
     }
   }
 
