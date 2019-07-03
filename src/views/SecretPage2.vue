@@ -102,7 +102,7 @@
       <progress-ring :radius="80" :progress="75" :stroke="10" />
     </div>
 
-    Test
+    Test2
 
 
     <br>
